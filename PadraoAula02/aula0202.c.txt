@@ -1,0 +1,105 @@
+/Universidade Federal do Rio de Janeiro
+/Escola Politecnica
+/Departamento de Eletronica e de Computacao
+/EEL270 - Computacao II - Turma 2020/1 - PLE-1
+/Prof. Marcelo Luiz Drumond Lanza
+/Autor: Eduardo Bruno Martisn Esperanca
+/Descricao: calcula sequencia fibonacci e printa termo a termo.
+
+/$Author: eduardo.esperanca $
+/$Date: 2020/12/21 23:56:18 $
+/$Log: aula0202.c,v $
+/Revision 1.2  2020/12/21 23:56:18  eduardo.esperanca
+/correcao de erro.
+/
+/Revision 1.1  2020/12/21 19:28:17  eduardo.esperanca
+/Initial revision
+/
+*/
+#include <stdio.h> /*pritf*/
+#include <stdlib.h> /*strtoul e exit*/
+#include "aula0201.h" /*funcao que calcula sequencia fibonacci*/
+
+#define finalizado  0
+#ifdef FreeBSD
+#include <sys/limits.h>
+#endif
+
+#ifdef linux
+#include <limits.h>
+#endif
+
+
+
+
+#define NUMERO_ARGUMENTOS_INVALIDO        1
+#define VALOR_MAXIMO_EXCEDIDO             2
+#define ARGUMENTO_INVALIDO                3
+#define USHRT_MAX                         65535
+#define NUMERO_ARGUMENTOS                 2
+#define END_OF_STRING                    '\0'
+
+
+
+int
+main(int argc, char *argv[])
+{
+   unsigned short index;
+
+   unsigned long long testeLimite;
+
+   unsigned long long comparator;
+
+
+
+   char *verificacao;
+
+   testeLimite = strtoul (argv [1], &verificacao, 10);
+
+
+   if (argc != NUMERO_ARGUMENTOS)
+   {
+      printf ("Nao foi possivel calcular o fibonacci.\n");
+      printf ("Uso: %s <inteiro-nao-negativo>\n", argv [0]);
+      return (NUMERO_ARGUMENTOS_INVALIDO);
+   }
+
+
+   if (argv [1][0] == '-')
+   {
+      printf ("Argumento invalido. Primeiro caractere invalido: '-'\n" );
+      return (ARGUMENTO_INVALIDO);
+   }
+
+
+   if (*verificacao != END_OF_STRING)
+   {
+      printf ("Argumento invalido. Primeiro caractere invalido: '%c'\n", *verificacao);
+      return (ARGUMENTO_INVALIDO);
+   }
+
+   if (testeLimite > USHRT_MAX)
+   {
+
+      printf ("Valor excede o maximo permitido para unsigned short (%u).\n", USHRT_MAX);
+      return (VALOR_MAXIMO_EXCEDIDO);
+   }
+
+
+
+   for(index = 0; index < testeLimite + 1; index ++)
+   {
+      if(comparator >= CalcularTermoSerieFibonacci(index) && index > 3)
+      {
+         printf("Valor excede o maximo de armazenamento da variável.\n");
+        return (VALOR_MAXIMO_EXCEDIDO);
+     }
+     printf("F(%u) = %llu \n", index, CalcularTermoSerieFibonacci (index));
+
+     comparator = CalcularTermoSerieFibonacci(index);
+
+   }
+
+   return finalizado;
+}
+/*$RCSfile: aula0202.c,v $*/

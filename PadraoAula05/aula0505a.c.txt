@@ -1,0 +1,94 @@
+/* Universidade Federal do Rio de Janeiro
+ * Escola Politecnica
+ * Departamento de Eletronica e de Computacao
+ * EEL270 - Computacao II - Turma 2020/1
+ * Prof. Marcelo Luiz Drumond Lanza
+ * Autor: Eduardo Bruno Martins Esperanca
+ * Descricao: recebe os 9 primeiros digitos do cpf separadamente e printa os verificadores;
+ *
+ * $Author: eduardo.esperanca $
+ * $Date: 2021/01/18 20:05:15 $
+ * $Log: aula0505a.c,v $
+ * Revision 1.2  2021/01/18 20:05:15  eduardo.esperanca
+ * correcao de cabecalho.^[[3~
+ *
+ * Revision 1.1  2021/01/18 17:00:07  eduardo.esperanca
+ * Initial revision
+ *
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "aula0504.h"
+
+#define FINALIZADO                    0
+#define NUMERO_DE_ARGUMENTOS          10
+#define NUMERO_DE_ARGUMENTOS_INVALIDO 2
+#define ARGUMENTO_INVALIDO            1
+#define END_OF_STRING                 '\0'
+
+
+int
+protect (char arg[])
+{
+   int count;
+   for(count = 0; arg[count] != END_OF_STRING;)
+   {
+      if(count != 0 )
+      {
+         return ARGUMENTO_INVALIDO;
+      }
+      count++;
+   }
+
+   return FINALIZADO;
+}
+
+int
+main (int argc, char *argv[])
+{
+   char cpf[12];
+   char *verificacao;
+   char dv1[2];
+   char dv2[2];
+   int index;
+   if(argc != NUMERO_DE_ARGUMENTOS)
+   {
+     printf ("\n\n Numero de argumentos fora do padrão, por favor digite apenas 1 com os 9 digitos. :( \n\n");
+     return NUMERO_DE_ARGUMENTOS_INVALIDO;
+   }
+   for(index=1; index!=10; index++)
+   {
+      if(protect(argv[index]) != FINALIZADO)
+      {
+         printf ("\n\n coloque APENAS 9 digitos. :( \n\n");
+         return ARGUMENTO_INVALIDO;
+      }
+
+      strtoul(argv[index], &verificacao, 10);
+      if(*verificacao != END_OF_STRING)
+      {
+      printf ("\n\n Argumento invalido verificado < %c > \n\n", *verificacao);
+      return ARGUMENTO_INVALIDO;
+      }
+      cpf[index-1] = argv[index][0];
+   }
+   cpf[index-1]= END_OF_STRING;
+
+   GerarDigitosVerificadoresCpf(cpf, dv1, dv2);
+
+
+   printf ("\n\n Digitos Verificadores = %s%s \n\n", dv1, dv2);
+
+   return FINALIZADO;
+}
+
+
+
+
+
+
+
+
+
+/*$RCSfile: aula0505a.c,v $*/

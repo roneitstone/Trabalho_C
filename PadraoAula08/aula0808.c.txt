@@ -1,0 +1,162 @@
+/*Universidade Federal do Rio de Janeiro
+ *Escola Politecnica
+ *Departamento de Eletronica e de Computacao
+ *EEL270 - Computacao II - Turma 2020/1
+ *Prof. Marcelo Luiz Drumond Lanza
+ *Autor: Eduardo Bruno Martins Esperanca
+ *Descricao: programa de testes com a main para a funcao CODIFICAR 64BITS.
+ *
+ *$Author: eduardo.esperanca $
+ *$Date: 2021/02/09 19:01:14 $
+ *$Log: aula0808.c,v $
+ *Revision 1.3  2021/02/09 19:01:14  eduardo.esperanca
+ *correcao do nome da .h e nas importacoes, adequado ao roteiro.
+ *
+ *Revision 1.2  2021/02/09 00:26:21  eduardo.esperanca
+ *erros adicionados.
+ *
+ *Revision 1.1  2021/02/09 00:21:59  eduardo.esperanca
+ *Initial revision
+ *
+ */
+
+
+#include "aula08.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include <limits.h>
+
+#define NUMERO_DE_ARGUME            '\n'
+#define NUMERO_DE_ARGUMENTOS          4
+#define END_OF_STRING                 '\0'
+#define FINALIZADO                    0
+#define ARGUMENTO_INVALIDO            2
+#define DIMENSAO_EXCEDIDA             4
+#define VALOR_FORA_DOS_PADROES        7
+#define ERRO_DE_ESCRITA               1
+#define TAMANHO_MAXIMO_LINHA          76
+#define TEMPLATE                      40
+#define TAMANHO_MAXIMO                30000
+
+int
+main (int argc, char *argv[])
+{
+   FILE *leitura, *escrita;
+   unsigned long long quantidadeBytes = 0;
+   unsigned int index = 0;
+   unsigned int index2 = 0;
+   tipoErros verificador;
+   byte codigo [TAMANHO_MAXIMO];
+   int quantidadeLinhas=0;
+   char leitor[TAMANHO_MAXIMO];
+   char convertido[3];
+   char *verif;
+   int verifEmpty;
+
+   if ( argc-1 != 2)
+   {
+      printf (" \n\n Faltam argumentos !\n\n");
+      return VALOR_FORA_DOS_PADROES;
+   }
+   if ( argv[1] == NULL)
+   {
+      printf ("\n\n Arquivo nao existe! \n\n");
+      return DIMENSAO_EXCEDIDA;
+   }
+
+   leitura = fopen ( argv[1], "r");
+   if ( leitura == NULL)
+   {
+      printf ("\n\n Arquivo nao existe! \n\n");
+      return VALOR_FORA_DOS_PADROES;
+   }
+   fseek(leitura, 0L, SEEK_END);
+   verifEmpty = ftell(leitura);
+   fseek(leitura, 0L, SEEK_SET);
+   if ( verifEmpty <= 1)
+   {
+      printf (" \n\n Arquivo vazio!\n\n");
+      return VALOR_FORA_DOS_PADROES;
+   }
+
+   while (fgets(leitor, TAMANHO_MAXIMO_LINHA, leitura)) {
+      quantidadeLinhas++;
+   }
+
+   fread ( leitor, 1, TAMANHO_MAXIMO_LINHA *quantidadeLinhas,leitura);
+
+   for ( index = 0; leitor[index] != END_OF_STRING ; index++)
+   {
+      quantidadeBytes++;
+   }
+   quantidadeBytes-=1;
+   fclose(leitura);
+   for ( index = 0 ; index < quantidadeBytes  ; index++)
+   {
+      if ( leitor[index] == '-')
+      {
+         printf ( "\n\n base 16 não possui negativo! \n\n");
+         return VALOR_FORA_DOS_PADROES;
+      }
+      convertido[index%2] = leitor[index];
+      if ( (index+1)%2 == 0 && index !=0)
+      {
+         convertido[2] = END_OF_STRING;
+         codigo [index2] = strtoul(convertido, &verif, 16);
+         if ( *verif != END_OF_STRING)
+         {
+            return ARGUMENTO_INVALIDO;
+         }
+         index2++;
+      }
+   }
+   char *codificado;
+   codificado = malloc(quantidadeBytes*3);
+   codigo [index2] =END_OF_STRING;
+   if (index %2 !=0)
+   {
+      printf ("\n\n Erro, numero de caracteres Impar! \n\n");
+      return VALOR_FORA_DOS_PADROES;
+   }
+   verificador = CodificarBase64 (codigo, quantidadeBytes/2, 1, codificado);
+
+   if ( verificador == entradaInvalida)
+   {
+      printf ( "\n\n Entrada Invalida!\n\n");
+      return VALOR_FORA_DOS_PADROES;
+   }
+
+   if ( verificador == argumentoInvalido)
+   {
+      printf ( "\n\n Argumento Invalido detectado!\n\n");
+      return VALOR_FORA_DOS_PADROES;
+   }
+
+   index =0;
+   while( codificado[index] != END_OF_STRING)
+   {
+
+      index++;
+   }
+   char answer[index];
+
+   for ( index = 0; codificado[index] != END_OF_STRING; index++)
+   {
+         answer[index] = codificado[index];
+   }
+   answer[index] = END_OF_STRING;
+   escrita = fopen ( argv[2], "w");
+   fwrite (answer, 1, strlen(answer), escrita);
+   fclose(escrita);
+
+   printf ("\n\n FINALIZADO COM SUCESSO \n\n");
+   return FINALIZADO;
+
+
+}
+
+
+
+/*$RCSfile: aula0808.c,v $ */

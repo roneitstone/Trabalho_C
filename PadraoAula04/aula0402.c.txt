@@ -1,0 +1,209 @@
+/*
+ *Universidade Federal do Rio de Janeiro
+ *Escola Politecnica
+ *Departamento de Eletronica e de Computacao
+ *EEL270 - Computacao II - Turma 2020/1
+ *Prof. Marcelo Luiz Drumond Lanza
+ *Autor: Eduardo Bruno Martins Esperanca
+ *Descricao: Base para as funcoes de calcular exponencial.
+
+ *$Author: eduardo.esperanca $
+ *$Date: 2021/01/11 22:21:12 $
+ *$Log: aula0402.c,v $
+ *Revision 1.1  2021/01/11 22:21:12  eduardo.esperanca
+ *Initial revision
+ *
+ *Revision 1.1  2021/01/11 22:16:58  eduardo.esperanca
+ *Initial revision
+ *
+ */
+
+#include "aula04.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+#include <float.h>
+#include <string.h>
+#define finalizado                        0
+#define VALOR_MAXIMO_EXCEDIDO             3
+#define ARGUMENTO_INVALIDO                4
+#define NUMERO_ARGUMENTOS                 3
+#define END_OF_STRING                    '\0'
+#define NUMERO_ARGUMENTOS_INVALIDO        1
+
+int
+strlen2 (char *arg, int leitor)
+{
+   char *verif2 = "01";
+   int index;
+   leitor = 0;
+   for(index = 0; verif2[0] == arg[index]; index++)
+   {
+      leitor += 1;
+   }
+   return leitor;
+}
+
+
+int
+protect(char *arg1, char *arg2)
+{
+   int testeLimite2;
+   double testeLimite;
+   char *verificacao;
+   char *verificacao2;
+   char verif[18];
+   char *verif2 = "-0";
+   int index;
+   int comparer;
+   int len = 0;
+
+   if(arg2[0] == verif2[0] )
+   {
+      testeLimite2 = INT_MIN;
+
+      for(index = 0; testeLimite2 < 0;index++)
+      {
+         verif[index] = '0';
+         testeLimite2 = testeLimite2/10;
+      }
+
+      if(strlen(arg2) == strlen2(verif, len) +1)
+      {
+         comparer = arg2[1] - '0';
+         testeLimite2 = strtol(arg2, &verificacao2, 10);
+         for(index = 1 ; testeLimite2 < 0; index++)
+         {
+            testeLimite2 = testeLimite2/10;
+            if(index == 9)
+            {
+               if(comparer !=  testeLimite2 * - 1)
+               {
+                  printf ("\n\nExcedeu o valor maximo para inteiro.6 :(\n\n");
+                  return VALOR_MAXIMO_EXCEDIDO;
+               }
+            }
+         }
+         if(index  != strlen2(verif, len) +1){
+
+            printf ("\n\nExcedeu o valor maximo para inteiro.2 :(\n\n");
+            return VALOR_MAXIMO_EXCEDIDO;
+         }
+      }
+      if(strlen(arg2) > strlen2(verif, len) + 1)
+      {
+         printf ("\n\nExcedeu o valor maximo para inteiro. 5 %d:(\n\n", strlen2(verif,len) + 1 );
+         return VALOR_MAXIMO_EXCEDIDO;
+      }
+
+
+   }
+   else{
+      testeLimite2 = INT_MAX;
+      for(index = 0; testeLimite2 > 0;index++)
+      {
+         verif[index] = '0';
+         testeLimite2 = testeLimite2/10;
+      }
+
+      if(strlen(arg2) == strlen2(verif, len))
+      {
+         comparer = arg2[0] - '0';
+         testeLimite2 = strtol(arg2, &verificacao2, 10);
+         for(index = 0 ; testeLimite2 > 1; index++)
+         {
+            testeLimite2 = testeLimite2/10;
+            if(index == 8)
+            {
+               if(comparer != testeLimite2)
+               {
+                  printf ("\n\nExcedeu o valor maximo para inteiro.7 :(\n\n");
+                  return VALOR_MAXIMO_EXCEDIDO;
+               }
+
+            }
+         }
+         if(index != strlen2(verif,len))
+         {
+
+            printf ("\n\nExcedeu o valor maximo para inteiro.3 :(\n\n");
+            return VALOR_MAXIMO_EXCEDIDO;
+
+         }
+      }
+      if(strlen(arg2) > strlen2(verif, len))
+      {
+         printf ("\n\nExcedeu o valor maximo para inteiro. 4:(\n\n");
+         return VALOR_MAXIMO_EXCEDIDO;
+      }
+   }
+   testeLimite = strtod(arg1, &verificacao);
+   if(testeLimite == INFINITO || testeLimite == NEGINFINITO )
+   {
+      printf ("\n\nExcedeu o valor maximo para double. :( \n\n");
+      return VALOR_MAXIMO_EXCEDIDO;
+   }
+
+   return 0;
+
+}
+
+int
+main(int argc, char *argv[])
+{
+   double testeLimite;
+   int testeLimite2;
+   char *verificacao;
+   char *verificacao2;
+   long double resultado;
+
+
+   if (argc != NUMERO_ARGUMENTOS)
+   {
+      printf ("\nNao foi possivel calcular o exponencial.\n");
+      printf ("\nUso: %s <valor inapropriado>\n", argv [0]);
+      return NUMERO_ARGUMENTOS_INVALIDO;
+
+   }
+   if(protect(argv[1],argv[2]) != 0)
+   {
+      return VALOR_MAXIMO_EXCEDIDO;
+   }
+
+   testeLimite = strtod(argv[1], &verificacao);
+   testeLimite2 = strtol(argv[2], &verificacao2, 10);
+   if (*verificacao != END_OF_STRING)
+   {
+      printf ("Primeiro argumento invalido. Primeiro caractere invalido: '%c'\n", *verificacao);
+      return ARGUMENTO_INVALIDO;
+   }
+
+   if (*verificacao2 != END_OF_STRING)
+   {
+      printf ("Segundo argumento invalido. Primeiro caractere invalido: '%c'\n", *verificacao2);
+      return ARGUMENTO_INVALIDO;
+   }
+
+   resultado = CalcularExponencial(testeLimite,testeLimite2);
+   if(resultado == INFINITO)
+   {
+      printf ("\n\n O exponencial de %G a %d = INFINITO \n\n", testeLimite, testeLimite2);
+      return finalizado;
+   }
+
+
+
+   if(resultado == NEGINFINITO)
+   {
+      printf ("\n\nValor maximo de variavel excedido :(\n\n");
+      return VALOR_MAXIMO_EXCEDIDO;
+   }
+   else
+   {
+      printf ("\n\n O exponencial de %G a %d = %LG \n\n", testeLimite, testeLimite2,resultado);
+   }
+
+   return finalizado;
+}
+
+/*$RCSfile: aula0402.c,v $*/

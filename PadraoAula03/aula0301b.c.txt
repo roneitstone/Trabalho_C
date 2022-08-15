@@ -1,0 +1,45 @@
+/*
+/Universidade Federal do Rio de Janeiro
+/Escola Politecnica
+/Departamento de Eletronica e de Computacao
+/EEL270 - Computacao II - Turma 2020/1
+/Prof. Marcelo Luiz Drumond Lanza
+/Autor: Eduardo Bruno Martins Esperanca
+/Descricao: Funcao que recebe os valores e calcula mdc por meio de do... while.
+/
+/$Author: eduardo.esperanca $
+/$Date: 2021/01/04 00:47:08 $
+/$Log: aula0301b.c,v $
+/Revision 1.1  2021/01/04 00:47:08  eduardo.esperanca
+/Initial revision
+/
+*/
+
+#include "aula0301.h"
+
+ull
+CalcularMaximoDivisorComum(ull termoMaior, ull termoMenor)
+{
+   unsigned long long resto;
+
+
+   if(termoMenor == 0)
+   {
+      return termoMaior;
+   }
+   do
+   {
+      resto = termoMaior % termoMenor;
+      termoMaior = termoMenor;
+      termoMenor = resto;
+      if(resto == 1)
+      {
+         return termoMenor;
+      }
+   }
+   while (resto != 0);
+   return termoMaior;
+
+}
+
+/*$RCSfile: aula0301b.c,v $*/

@@ -1,0 +1,110 @@
+/* Universidade Federal do Rio de Janeiro
+ * Escola Politecnica
+ * Departamento de Eletronica e de Computacao
+ * EEL270 - Computacao II - Turma 2020/1
+ * Prof. Marcelo Luiz Drumond Lanza
+ * Autor: Eduardo Bruno Martins Esperanca
+ * Descricao: base da funcao de gerar digitos verificadores de cpf e gerar cpf usando variavel do tipo char;
+ *
+ * $Author: eduardo.esperanca $
+ * $Date: 2021/01/18 20:15:59 $
+ * $Log: aula0508.c,v $
+ * Revision 1.3  2021/01/18 20:15:59  eduardo.esperanca
+ * correcao de cabecalho.
+ *
+ * Revision 1.2  2021/01/18 19:40:55  eduardo.esperanca
+ * correcao de cabecalho.
+ *
+ * Revision 1.1  2021/01/17 22:10:54  eduardo.esperanca
+ * Initial revision
+ *
+ */
+
+#include "aula0508.h"
+#define END_OF_STRING      '\0'
+
+
+tipoErros
+GerarDigitosVerificadoresCpf(char* arg)
+{
+   int index;
+   int digito = 0;
+   int resultado = 0;
+   int auxiliar = 10;
+   int verificador;
+   for(index = 0; arg[index] != END_OF_STRING; index++ )
+   {
+      digito = arg[index];
+      if(digito < 48 || digito > 57)
+      {
+         return argumentoInvalido;
+      }
+   }
+
+   for(index = 0;index != 9;)
+   {
+      digito = arg[index ] - '0';
+      resultado = resultado + (digito * (auxiliar - index));
+      index++;
+   }
+   if(resultado%11 == 0 || resultado%11 == 1)
+   {
+      verificador = 0;
+   }
+   else
+   {
+      verificador = 11 - resultado%11;
+   }
+   arg[index] = verificador + '0';
+   auxiliar = 11;
+   resultado = 0;
+
+   for (index = 0; index !=10;)
+   {
+      digito = arg[index ] - '0';
+
+      resultado = resultado + (digito * (auxiliar - index));
+
+      index++;
+   }
+   if(resultado%11 == 0 || resultado%11 == 1)
+   {
+      verificador = 0;
+   }
+   else
+   {
+      verificador = 11 - resultado%11;
+   }
+
+   arg[index] = verificador + '0';
+   arg[index+1] = END_OF_STRING;
+
+   return ok;
+
+}
+
+tipoErros
+GerarCpf(char* arg)
+{
+   int random;
+   int index;
+   int resultado = time(NULL);
+   srand(time(0));
+
+   for (index = 0; index != 10; index++)
+   {
+      if(resultado != (time_t)(-1))
+      {
+
+         random = (rand() * time(NULL)) %10;
+         arg[index] = random + '0' ;
+
+      }
+   }
+   arg[index] = END_OF_STRING;
+   GerarDigitosVerificadoresCpf(arg);
+   return ok;
+}
+
+
+/*$RCSfile: aula0508.c,v $*/

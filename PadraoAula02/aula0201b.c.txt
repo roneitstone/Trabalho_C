@@ -1,0 +1,52 @@
+/*Universidade Federal do Rio de Janeiro
+/Escola Politecnica
+/Departamento de Eletronica e de Computacao
+/EEL270 - Computacao II - Turma 2020/1 - PLE-1
+/Prof. Marcelo Luiz Drumond Lanza
+/Autor: Eduardo Bruno Martins Esperanca
+/Descricao: Calcula sequencia fibonacci com do while.
+/
+/$Author: eduardo.esperanca $
+/$Date: 2020/12/21 23:52:28 $
+/$Log: aula0201b.c,v $
+/Revision 1.2  2020/12/21 23:52:28  eduardo.esperanca
+/correcao de erro.
+/
+/Revision 1.1  2020/12/21 01:59:51  eduardo.esperanca
+/Initial revision
+/*/
+
+#include "aula0201.h"
+
+unsigned long long
+CalcularTermoSerieFibonacci(unsigned short index)
+{
+   unsigned short condicao;
+   unsigned long long resultado;
+   unsigned long long Valor_Antigo;
+   unsigned long long Valor_Novo;
+   Valor_Antigo = 1;
+   Valor_Novo = 1;
+   resultado = 0;
+   condicao = 1;
+
+   if(index == 0)
+   {
+      return resultado;
+   }
+
+   do
+   {
+      condicao++;
+      Valor_Antigo = Valor_Novo;
+      Valor_Novo = resultado;
+      resultado = Valor_Novo + Valor_Antigo;
+
+   }
+   while(condicao <= index);
+   return resultado;
+}
+
+
+
+/*$RCSfile: aula0201b.c,v $*/

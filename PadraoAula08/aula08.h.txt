@@ -1,0 +1,91 @@
+/*
+ * Universidade Federal do Rio de Janeiro
+ * Escola Politecnica
+ * Departamento de Eletronica e de Computacao
+ * EEL270 - Computacao II - Turma 2020/1
+ * Prof. Marcelo Luiz Drumond Lanza
+ * Autor: Eduardo Bruno Martins Esperanca
+ * Descricao: prototipo das funcoes de codificar 16bits
+ *
+ * $Author: eduardo.esperanca $
+ * $Date: 2021/02/09 18:49:07 $
+ * $Log: aula08.h,v $
+ * Revision 1.1  2021/02/09 18:49:07  eduardo.esperanca
+ * Initial revision
+ *
+ * Revision 1.1  2021/02/09 18:21:01  eduardo.esperanca
+ * Initial revision
+ *
+ */
+
+
+#ifndef __AULA08__
+
+#define __AULA08__   "@(#)aula08.h $Revision: 1.1 $"
+
+#define BASE_64          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+
+#define BASE_16          "0123456789ABCDEF"
+
+#define BASE_32_HEX       "0123456789ABCDEFGHIJKLMNOPQRSTUV"
+
+#define BASE_32_BASIC     "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"
+
+#define PADDING '='
+
+#define INFINITO  1.0 / 0.0
+
+#define NEGINFINITO  (-1.0) / 0.0
+
+#define conversor strtoull
+
+#ifndef ANSI
+
+#undef conversor
+
+#define conversor strtoul
+
+#endif
+typedef unsigned char byte;
+
+typedef enum {
+   ok,
+   entradaInvalida,
+   argumentoInvalido,
+   numeroBytesIncorreto
+} tipoErros;
+typedef enum {
+   basico,
+   estendido
+} tipoAlfabetoBase32;
+typedef enum {
+   desabilitado,
+   habilitado
+} tipoFinalLinha;
+
+tipoErros
+CodificarBase16 (byte *, unsigned long long, char * );
+
+
+tipoErros
+DecodificarBase16 (char * , byte * , unsigned long long * );
+
+
+tipoErros
+CodificarBase32 (byte * /* (E) */, unsigned long long /*  (E) */, tipoAlfabetoBase32 /* (E) */, char * /* (S) */);
+
+tipoErros
+DecodificarBase32 (char * /* (E) */, tipoAlfabetoBase32 /* (E) */, byte * /* (S) */, unsigned long long * /* (S) */);
+
+tipoErros
+CodificarBase64 (byte * /* (E) */, unsigned long long /*  (E) */, tipoFinalLinha /* (E) */, char * /* (S) */);
+
+tipoErros
+DecodificarBase64 (char * /* (E) */, tipoFinalLinha /* (E) */, byte * /* (S) */, unsigned long long * /* (S) */);
+
+#endif
+
+
+
+
+/*$RCSfile: aula08.h,v $*/

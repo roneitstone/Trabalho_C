@@ -1,0 +1,702 @@
+#Universidade Federal do Rio de Janeiro
+#Escola Politecnica
+#Departamento de Eletronica e de Computacao
+#EEL270 - Computacao II - Turma 2020/1
+#Prof. Marcelo Luiz Drumond Lanza
+#Autor: Eduardo Bruno Martins Esperanca
+#Descricao: <Programa makefile que possui todos os macros>
+#
+#$Author: eduardo.esperanca $
+#$Date: 2021/02/14 16:15:16 $
+#$Log: BSDmakefile,v $
+#Revision 1.44  2021/02/14 16:15:16  eduardo.esperanca
+#adicionads os macros referentes ao comando 36 da aula09.
+#
+#Revision 1.43  2021/02/14 16:09:28  eduardo.esperanca
+#adicionados os macros referentes ao comando 31 da aula09.
+#
+#Revision 1.42  2021/02/14 15:56:09  eduardo.esperanca
+#adicionados os macros referentes ao comando 26 da aula09.
+#
+#Revision 1.41  2021/02/14 15:51:37  eduardo.esperanca
+#adicionados os macros referentes ao comando 21 da aula09.
+#
+#Revision 1.40  2021/02/14 15:46:06  eduardo.esperanca
+#adicionados os macros referentes ao comando 14 da aula09.
+#
+#Revision 1.39  2021/02/14 15:41:08  eduardo.esperanca
+#adicionados os macros referentes ao comando 7 da aula09.
+#
+#Revision 1.38  2021/02/08 17:11:12  eduardo.esperanca
+#adicionados os macros referentes ao comando 52 da aula08.
+#
+#Revision 1.37  2021/02/08 17:07:03  eduardo.esperanca
+#adicionados os macros referentes ao comando 47 da aula08.
+#
+#Revision 1.36  2021/02/08 16:43:39  eduardo.esperanca
+#adicionados os macros referentes ao comando 42 da aula08.
+#
+#Revision 1.35  2021/02/08 16:37:28  eduardo.esperanca
+#adicionados os macros referentes ao comando 35 da aula08.
+#
+#Revision 1.34  2021/02/08 16:33:05  eduardo.esperanca
+#adicionados os macros referentes ao comando 28 da aula08.
+#
+#Revision 1.33  2021/02/08 16:28:52  eduardo.esperanca
+#adicionada as macros referentes ao comando 21 da aula08.
+#
+#Revision 1.32  2021/02/08 16:19:58  eduardo.esperanca
+#adicionada as macros referentes ao comando 14 da aula08.
+#
+#Revision 1.31  2021/02/08 16:11:52  eduardo.esperanca
+#adiciona macros referentes ao comando 8 da aula08.
+#
+#Revision 1.30  2021/02/02 17:34:01  eduardo.esperanca
+#correcao de erro nas libs.
+#
+#Revision 1.29  2021/01/31 14:17:00  eduardo.esperanca
+#adicionados os macros referentes ao comando 33 da aula07.
+#
+#Revision 1.28  2021/01/31 14:11:21  eduardo.esperanca
+#adicionados os macros referentes ao comando 26 da aula07.c
+#
+#Revision 1.27  2021/01/31 14:06:47  eduardo.esperanca
+#adicionados os macros referentes ao comando 19 do roteiro da aula07.
+#
+#Revision 1.26  2021/01/31 13:51:54  eduardo.esperanca
+#Revision 1.26  2021/01/31 13:51:54  eduardo.esperanca
+#adicionados as macros referentes ao comando 12 da aula07, alem de corrigido o erro da falta de libs.
+#
+#Revision 1.25  2021/01/31 13:08:05  eduardo.esperanca
+#adicionado a macro referente ao comando5 do roteiro da aula 7.
+#
+#Revision 1.24  2021/01/21 18:54:38  eduardo.esperanca
+#adicionadas as macros referentes ao comando 35 do roteiro da aula6.
+#
+#Revision 1.23  2021/01/21 18:36:40  eduardo.esperanca
+#adicionadas as macros references ao comando 29 do roteiro da aula06.
+#
+#Revision 1.22  2021/01/21 18:15:39  eduardo.esperanca
+#adicionadas as macros referentes ao comando 23 da aula6.
+#
+#Revision 1.21  2021/01/21 18:04:12  eduardo.esperanca
+#adicionados macros e lib referentes ao comando 15 do roteiro da aula06.
+#
+#Revision 1.20  2021/01/21 14:54:10  eduardo.esperanca
+#adicionados macros referentes ao comando 6 do roteiro da aula 6.
+#
+#Revision 1.19  2021/01/17 18:45:30  eduardo.esperanca
+#correçcao de macro.
+#
+#Revision 1.18  2021/01/14 19:26:41  eduardo.esperanca
+#adicionados os arquivos referentes ao comando 42 do roteiro da aula05.
+#
+#Revision 1.17  2021/01/14 19:22:37  eduardo.esperanca
+#adicionados os arquivos referentes ao comando 35 do roteiro da aula05.
+#
+#Revision 1.16  2021/01/14 19:16:28  eduardo.esperanca
+#adicionados os arquivos referentes ao comando 29 do roteiro da aula05.
+#
+#Revision 1.15  2021/01/14 17:27:36  eduardo.esperanca
+#adicionados os arquivos referentes ao comando 25 do roteiro da aula05.
+#
+#Revision 1.14  2021/01/14 16:41:51  eduardo.esperanca
+#adicionados os arquivos referentes ao comando 24 do roteiro da aula05.
+#
+#Revision 1.13  2021/01/14 16:12:52  eduardo.esperanca
+#adicionados os arquivos referentes ao comando 18 do roteiro da aula05.
+#
+#Revision 1.12  2021/01/14 16:05:39  eduardo.esperanca
+#adicionados arquivos referentes ao comando 11 do roteiro da aula05
+#
+#Revision 1.11  2021/01/14 15:59:40  eduardo.esperanca
+#adicionado os arquivos referentes ao comando 6 do roteiro da aula05.
+#
+#Revision 1.10  2021/01/11 23:53:35  eduardo.esperanca
+#correcao de erros na macro.
+#
+#Revision 1.9  2021/01/11 23:11:23  eduardo.esperanca
+#correcao de erros nas macros.
+#
+#Revision 1.8  2021/01/11 22:31:14  eduardo.esperanca
+#atualizacao com os requisitos para o roteiro da aula04..
+#
+#Revision 1.7  2020/12/22 23:29:22  eduardo.esperanca
+#adicionado novos macros, para os arquivos do tipo aula0302X.C, al▒em do comando aula03.
+#
+#Revision 1.6  2020/12/22 18:17:27  eduardo.esperanca
+#adicao de novos macros e das libs solicitadas no roteiro da aula03. Correcao de erros.
+#
+#Revision 1.5  2020/12/16 04:43:22  eduardo.esperanca
+#adicionado macro pertinente ao roteiro da aula02, adicionado aula0201d.c aos objetivos.
+#
+#Revision 1.1  2020/12/16 02:24:00  eduardo.esperanca
+#Initial revision
+#
+#Revision 1.1  2020/12/16 02:21:19  eduardo.esperanca
+#Initial revision
+#
+
+#macros
+
+OS = `uname -s`
+
+CC = gcc #valor base e compilador
+
+.ifdef CLANG
+CC = clang
+.endif
+
+LD = $(CC)# Link-editor
+
+
+DIALETO = -ansi #valor padrao
+DIAL = ansi
+.ifdef C99
+DIALETO = -std=c99
+DIAL = c99
+.endif
+.ifdef C11
+DIALETO = -std=c11
+DIAL = c11
+.endif
+
+CFLAGS = -Wall $(DIALETO) #definindo flag 1
+LFLAGS = -Wall
+EXECS = aula0101\
+         aula0102\
+         aula0103\
+         aula0104\
+         aula0105\
+         aula0202a\
+         aula0202b\
+         aula0202c\
+         aula0202d\
+         aula0302a\
+         aula0302b\
+         aula0302c\
+         aula0302d\
+         aula0402a\
+         aula0402b\
+         aula0402c\
+         aula0402d\
+         aula0404a\
+         aula0404b\
+         aula0404c\
+         aula0404d\
+         aula0404e\
+         aula0502a\
+         aula0502b\
+         aula0503a\
+         aula0503b\
+         aula0505a\
+         aula0505b\
+         aula0506a\
+         aula0506b\
+         aula0507\
+         aula0509\
+         aula0510\
+         aula0602\
+         aula0603\
+         aula0604\
+         aula0605\
+         aula0606\
+         aula0702\
+         aula0703\
+         aula0704\
+         aula0705\
+         aula0706\
+         aula0802\
+         aula0803\
+         aula0804\
+         aula0805\
+         aula0806\
+         aula0807\
+         aula0808\
+         aula0809\
+         aula0902\
+         aula0903\
+         aula0904\
+         aula0905\
+         aula0906\
+         aula0907
+
+
+
+LIBS = libmatematicarecursao.a\
+         libmatematicadowhile.a\
+         libmatematicafor.a\
+         libmatematicawhile.a\
+         libmatematica.a\
+         libmonitor.a\
+         libbase.a\
+         libarquivos.a\
+
+
+ALL = $(EXECS) $(LIBS)
+
+#Regra implicita
+.c.o:
+   $(CC) $(CFLAGS) -c $<
+
+all: $(ALL)
+
+LIBARQUIVOSOBJS = aula0901.o
+LIBBASEOBJS = aula0801.o
+LIBMONITOROBJS = aula0701.o
+LIBMATEMATICAOBJS = aula0601.o
+LIBMATEMATICARECURSAOOBJS = aula0201a.o aula0301a.o aula0401a.o
+LIBMATEMATICADOWHILEOBJS = aula0201b.o aula0301b.o aula0401b.o
+LIBMATEMATICAFOROBJS = aula0201c.o aula0301c.o aula0401c.o
+LIBMATEMATICAWHILEOBJS = aula0201d.o aula0301d.o aula0401d.o
+
+LIBARQUIVOS = libarquivos.a
+LIBBASE = libbase.a
+LIBMONITOR = libmonitor.a
+LIBMATEMATICA = libmatematica.a
+LIBMATEMATICARECURSAO = libmatematicarecursao.a
+LIBMATEMATICADOWHILE = libmatematicadowhile.a
+LIBMATEMATICAFOR = libmatematicafor.a
+LIBMATEMATICAWHILE = libmatematicawhile.a
+
+ibarquivos.a : $(LIBARQUIVOSOBJS)
+   ar -r -c libarquivos.a $(LIBARQUIVOSOBJS)
+
+libbase.a : $(LIBBASEOBJS)
+   ar -r -c libbase.a $(LIBBASEOBJS)
+
+libmonitor.a : $(LIBMONITOROBJS)
+   ar -r -c libmonitor.a $(LIBMONITOROBJS)
+
+libmatematica.a : $(LIBMATEMATICAOBJS)
+   ar -r -c libmatematica.a $(LIBMATEMATICAOBJS)
+
+libmatematicarecursao.a : $(LIBMATEMATICARECURSAOOBJS)
+   ar -r -c libmatematicarecursao.a $(LIBMATEMATICARECURSAOOBJS)
+
+libmatematicadowhile.a : $(LIBMATEMATICADOWHILEOBJS)
+   ar -r -c libmatematicadowhile.a $(LIBMATEMATICADOWHILEOBJS)
+
+libmatematicafor.a : $(LIBMATEMATICAFOROBJS)
+   ar -r -c libmatematicafor.a $(LIBMATEMATICAFOROBJS)
+
+libmatematicawhile.a :$(LIBMATEMATICAWHILEOBJS)
+   ar -r -c libmatematicawhile.a $(LIBMATEMATICAWHILEOBJS)
+
+AULA0101OBJS = aula0101.o
+AULA0102OBJS = aula0102.o
+AULA0103OBJS = aula0103.o
+AULA0104OBJS = aula0104.o
+AULA0105OBJS = aula0105.o
+AULA0202AOBJS = aula0202.o aula0201a.o
+AULA0202BOBJS = aula0202.o aula0201b.o
+AULA0202COBJS = aula0202.o aula0201c.o
+AULA0202DOBJS = aula0202.o aula0201d.o
+AULA0302AOBJS = aula0302.o aula0301a.o
+AULA0302BOBJS = aula0302.o aula0301b.o
+AULA0302COBJS = aula0302.o aula0301c.o
+AULA0302DOBJS = aula0302.o aula0301d.o
+AULA0402AOBJS = aula0402.o aula0401a.o
+AULA0402BOBJS = aula0402.o aula0401b.o
+AULA0402COBJS = aula0402.o aula0401c.o
+AULA0402DOBJS = aula0402.o aula0401d.o
+AULA0404AOBJS = aula0404.o aula0403a.o
+AULA0404BOBJS = aula0404.o aula0403b.o
+AULA0404COBJS = aula0404.o aula0403c.o
+AULA0404DOBJS = aula0404.o aula0403d.o
+AULA0404EOBJS = aula0404.o aula0401e.o
+AULA0402AOBJS = aula0402.o aula0401a.o
+AULA0402BOBJS = aula0402.o aula0401b.o
+AULA0402COBJS = aula0402.o aula0401c.o
+AULA0402DOBJS = aula0402.o aula0401d.o
+AULA0404AOBJS = aula0404.o aula0403a.o
+AULA0404BOBJS = aula0404.o aula0403b.o
+AULA0404COBJS = aula0404.o aula0403c.o
+AULA0404DOBJS = aula0404.o aula0403d.o
+AULA0404EOBJS = aula0404.o aula0403e.o
+AULA0502AOBJS = aula0501.o aula0502a.o
+AULA0502BOBJS = aula0501.o aula0502b.o
+AULA0503AOBJS = aula0501.o aula0503a.o
+AULA0503BOBJS = aula0501.o aula0503b.o
+AULA0505AOBJS = aula0504.o aula0505a.o
+AULA0505BOBJS = aula0504.o aula0505b.o
+AULA0506AOBJS = aula0504.o aula0506a.o
+AULA0506BOBJS = aula0504.o aula0506b.o
+AULA0507OBJS = aula0501.o aula0507.o
+AULA0509OBJS = aula0508.o aula0509.o
+AULA0510OBJS = aula0508.o aula0510.o
+AULA0602OBJS = aula0601.o aula0602.o
+AULA0603OBJS = aula0601.o aula0603.o
+AULA0604OBJS = aula0601.o aula0604.o
+AULA0605OBJS = aula0601.o aula0605.o
+AULA0606OBJS = aula0601.o aula0606.o
+AULA0702OBJS = aula0702.o
+AULA0703OBJS = aula0703.o
+AULA0704OBJS = aula0704.o
+AULA0705OBJS = aula0705.o
+AULA0706OBJS = aula0706.o
+AULA0802OBJS = aula0802.o
+AULA0803OBJS = aula0803.o
+AULA0804OBJS = aula0804.o
+AULA0805OBJS = aula0805.o
+AULA0806OBJS = aula0806.o
+AULA0807OBJS = aula0807.o
+AULA0808OBJS = aula0808.o
+AULA0809OBJS = aula0809.o
+AULA0902OBJS = aula0902.o
+AULA0903OBJS = aula0903.o
+AULA0904OBJS = aula0904.o
+AULA0905OBJS = aula0905.o
+AULA0906OBJS = aula0906.o
+AULA0907OBJS = aula0907.o
+
+
+
+aula0101 : $(AULA0101OBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0101OBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0102 : $(AULA0102OBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0102OBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0103 : $(AULA0103OBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0103OBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0104 : $(AULA0104OBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0104OBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0105 : $(AULA0105OBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0105OBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0202a : $(AULA0202AOBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0202AOBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0202b : $(AULA0202BOBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0202BOBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0202c : $(AULA0202COBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0202COBJS)
+aula0202d : $(AULA0202DOBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0202DOBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0302a : $(AULA0302AOBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0302AOBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0302b : $(AULA0302BOBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0302BOBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0302c : $(AULA0302COBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0302COBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0302d : $(AULA0302DOBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0302DOBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0402a: $(AULA0402AOBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0402AOBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0402b: $(AULA0402BOBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0402BOBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0402c: $(AULA0402COBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0402COBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0402d: $(AULA0402DOBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0402DOBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0404a: $(AULA0404AOBJS) $(LIBMATEMATICARECURSAO)
+   $(LD) $(LFLAGS) -o $@ $(AULA0404AOBJS) -L. libmatematicarecursao.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0404b: $(AULA0404BOBJS) $(LIBMATEMATICADOWHILE)
+   $(LD) $(LFLAGS) -o $@ $(AULA0404BOBJS) -L. libmatematicadowhile.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0404c: $(AULA0404COBJS) $(LIBMATEMATICAFOR)
+   $(LD) $(LFLAGS) -o $@ $(AULA0404COBJS) -L. libmatematicafor.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0404d: $(AULA0404DOBJS) $(LIBMATEMATICAWHILE)
+   $(LD) $(LFLAGS) -o $@ $(AULA0404DOBJS) -L. libmatematicawhile.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0404e: $(AULA0404EOBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0404EOBJS) -lm
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0502a: $(AULA0502AOBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0502AOBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0502b: $(AULA0502BOBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0502BOBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0503a: $(AULA0503AOBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0503AOBJS)
+aula0503b: $(AULA0503BOBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0503BOBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0505a: $(AULA0505AOBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0505AOBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0505b: $(AULA0505BOBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0505BOBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0506a: $(AULA0506AOBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0506AOBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0506b: $(AULA0506BOBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0506BOBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0507: $(AULA0507OBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0507OBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0509: $(AULA0509OBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0509OBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0510: $(AULA0510OBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0510OBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0602: $(AULA0602OBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0602OBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0603: $(AULA0603OBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0603OBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0604: $(AULA0604OBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0604OBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0605: $(AULA0605OBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0605OBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0606: $(AULA0606OBJS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0606OBJS)
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0702: $(AULA0702OBJS) $(LIBMONITOR)
+   $(LD) $(LFLAGS) -o $@ $(AULA0702OBJS) -L -l libmonitor.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0703: $(AULA0703OBJS) $(LIBMONITOR)
+   $(LD) $(LFLAGS) -o $@ $(AULA0703OBJS) -L -l libmonitor.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0704: $(AULA0704OBJS) $(LIBMONITOR)
+   $(LD) $(LFLAGS) -o $@ $(AULA0704OBJS) -L -l libmonitor.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0705: $(AULA0705OBJS) $(LIBMONITOR)
+   $(LD) $(LFLAGS) -o $@ $(AULA0705OBJS) -L -l libmonitor.a
+aula0706: $(AULA0706OBJS) $(LIBMONITOR)
+   $(LD) $(LFLAGS) -o $@ $(AULA0706OBJS) -L -l libmonitor.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0802: $(AULA0802OBJS) $(LIBBASE)
+   $(LD) $(LFLAGS) -o $@ $(AULA0802OBJS) -L -l libbase.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0803: $(AULA0803OBJS) $(LIBBASE)
+   $(LD) $(LFLAGS) -o $@ $(AULA0803OBJS) -L -l libbase.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0804: $(AULA0804OBJS) $(LIBBASE)
+   $(LD) $(LFLAGS) -o $@ $(AULA0804OBJS) -L -l libbase.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0805: $(AULA0805OBJS) $(LIBBASE)
+   $(LD) $(LFLAGS) -o $@ $(AULA0805OBJS) -L -l libbase.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0806: $(AULA0806OBJS) $(LIBBASE)
+   $(LD) $(LFLAGS) -o $@ $(AULA0806OBJS) -L -l libbase.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0807: $(AULA0807OBJS) $(LIBBASE)
+   $(LD) $(LFLAGS) -o $@ $(AULA0807OBJS) -L -l libbase.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0808: $(AULA0808OBJS) $(LIBBASE)
+   $(LD) $(LFLAGS) -o $@ $(AULA0808OBJS) -L -l libbase.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0809: $(AULA0809OBJS) $(LIBBASE)
+   $(LD) $(LFLAGS) -o $@ $(AULA0809OBJS) -L -l libbase.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0902: $(AULA0902OBJS) $(LIBARQUIVOS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0902OBJS) -L -l libarquivos.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0903: $(AULA0903OBJS) $(LIBARQUIVOS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0903OBJS) -L -l libarquivos.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0904: $(AULA0904OBJS) $(LIBARQUIVOS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0904OBJS) -L -l libarquivos.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0905: $(AULA0905OBJS) $(LIBARQUIVOS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0905OBJS) -L -l libarquivos.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0906: $(AULA0906OBJS) $(LIBARQUIVOS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0906OBJS) -L -l libarquivos.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+aula0907: $(AULA0907OBJS) $(LIBARQUIVOS)
+   $(LD) $(LFLAGS) -o $@ $(AULA0907OBJS) -L -l libarquivos.a
+   cp -f $@ $@-$(OS)-$(CC)-$(DIAL)
+
+AULA01 = aula0101\
+            aula0102\
+            aula0103\
+            aula0104\
+            aula0105
+
+aula01: $(AULA01)
+
+
+
+
+
+AULA02 = aula0202a\
+            aula0202b\
+            aula0202c\
+            aula0202d
+
+
+
+aula02: $(AULA02)
+
+AULA03 = aula0302a\
+            aula0302b\
+            aula0302c\
+            aula0302d
+
+aula03: $(AULA03)
+
+AULA04 = aula0402a\
+         aula0402b\
+         aula0402c\
+         aula0402d\
+         aula0404a\
+         aula0404b\
+         aula0404c\
+         aula0404d\
+         aula0404e
+
+aula04: $(AULA04)
+
+AULA05 = aula0502a\
+         aula0502b\
+         aula0503a\
+         aula0503b\
+         aula0505a\
+         aula0505b\
+         aula0506a\
+         aula0506b\
+         aula0507\
+         aula0509\
+         aula0510
+
+
+aula05: $(AULA05)
+
+AULA06 = aula0602\
+         aula0603\
+         aula0604\
+         aula0605\
+         aula0606
+
+aula06: $(AULA06)
+
+AULA07 = aula0702\
+         aula0703\
+         aula0704\
+         aula0705\
+         aula0706
+
+
+aula07: $(AULA07)
+
+AULA08 = aula0802\
+         aula0803\
+         aula0804\
+         aula0805\
+         aula0806\
+         aula0807\
+         aula0808\
+         aula0809\
+
+aula08: $(AULA08)
+
+AULA09 = aula0902\
+         aula0903\
+         aula0904\
+         aula0905\
+         aula0906\
+         aula0907
+
+aula09: $(AULA09)
+
+.PHONY: clean
+
+clean:
+   rm -f *.o *.a $(ALL)
+#  @echo "GNUmakefile"
+#  @echo "OS: $(OS)"
+#  @echo "CC: $(CC)"
+#  @echo "LD: $(LD)"
+
+clean-all:
+   rm -f *.o *.a $(ALL) *gcc* *clang*
+
+clean-bsd:
+   rm -f *.o *.a $(ALL) *FreeBSD*
+
+clean-linux:
+   rm -f *.o *.a $(ALL) *Linux*
+
+clean-c11:
+   rm -f *.o *.a $(ALL) *c11*
+
+clean-c99:
+   rm -f *.o *.a $(ALL) *c99*
+
+clean-ansi:
+   rm -f *.o *.a $(ALL) *ansi*
+
+clean-gcc:
+   rm -f *.o *.a $(ALL) *gcc*
+
+clean-clang:
+   rm -f *.o *.a $(ALL) *clang*
+
+#$RCSfile: BSDmakefile,v $

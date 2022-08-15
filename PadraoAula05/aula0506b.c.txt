@@ -1,0 +1,127 @@
+[www02][                                                                                                                                                                                       (0*$ bash)                                                                                                                                                                                       ][03/09/21 11:54 AM]
+/*
+/* Universidade Federal do Rio de Janeiro
+ * Escola Politecnica
+ * Departamento de Eletronica e de Computacao
+ * EEL270 - Computacao II - Turma 2020/1
+ * Prof. Marcelo Luiz Drumond Lanza
+ * Autor: Eduardo Bruno Martins Esperanca
+ * Descricao: recebe os 11 primeiros digitos do cpf com os verificadores separados por traco e valida o cpf ;
+ *
+ * $Author: eduardo.esperanca $
+ * $Date: 2021/01/18 20:13:36 $
+ * $Log: aula0506b.c,v $
+ * Revision 1.2  2021/01/18 20:13:36  eduardo.esperanca
+ * correcao de cabecalho.
+ *
+ * Revision 1.1  2021/01/17 22:15:26  eduardo.esperanca
+ * Initial revision
+ *
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "aula0504.h"
+
+#define FINALIZADO                    0
+#define NUMERO_DE_ARGUMENTOS          2
+#define NUMERO_DE_ARGUMENTOS_INVALIDO 2
+#define ARGUMENTO_INVALIDO            1
+#define END_OF_STRING                 '\0'
+#define CPF_INVALIDO                  3
+
+
+int
+protect (char arg[])
+{
+   int count;
+   for(count = 0; arg[count] != END_OF_STRING;)
+   {
+      if(count > 11 )
+      {
+         return ARGUMENTO_INVALIDO;
+      }
+      count++;
+   }
+   if(count != 12)
+   {
+      return ARGUMENTO_INVALIDO;
+   }
+
+   return FINALIZADO;
+}
+
+int
+main (int argc, char *argv[])
+{
+   tipoErros validador;
+   int index ;
+   int adiantador = 0;
+   char aux[15];
+
+   if(argc != NUMERO_DE_ARGUMENTOS)
+   {
+     printf ("\n\n Numero de argumentos fora do padrão, por favor digite apenas 1 vez com os 11 digitos, separando com '-' os ultimos dois. :( \n\n");
+     return NUMERO_DE_ARGUMENTOS_INVALIDO;
+   }
+
+   if(protect(argv[1]) != FINALIZADO)
+   {
+      printf ("\n\n Coloque apenas 11 digitos. :( \n\n");
+      return ARGUMENTO_INVALIDO;
+   }
+
+
+   for(index = 0 ; index != 15 ; index++)
+   {
+      if(index != 3 && index != 7 && index != 11)
+      {
+         aux[index] = argv[1][index-adiantador];
+      }
+      if(index == 3 || index == 7)
+      {
+         aux[index] = '.';
+         adiantador++;
+      }
+      if(index == 11)
+      {
+         if(argv[1][index-adiantador] != '-')
+         {
+            printf (" \n\n Argumento Invalido! < %c >\n\n",argv[1][index-adiantador]);
+            return ARGUMENTO_INVALIDO;
+         }
+         aux[index] = argv[1][index-adiantador];
+
+      }
+   }
+   aux[index] = END_OF_STRING;
+
+   for (index = 0 ;aux[index] != END_OF_STRING; index++)
+   {
+      argv[1][index] = aux[index];
+   }
+   argv[1][index] = END_OF_STRING;
+
+   validador = ValidarCpf(argv[1]);
+
+   if(validador == argumentoInvalido)
+   {
+      printf ("\n\n Argumento invalido \n\n");
+      return ARGUMENTO_INVALIDO;
+   }
+
+   if(validador == verificadorInvalido)
+   {
+      printf ("\n\n CPF invalido \n\n");
+      return CPF_INVALIDO;
+   }
+
+   if(validador == ok)
+   {
+      printf ("\n\n !!Parabens seu cpf eh valido :O !! \n\n");
+   }
+
+   return FINALIZADO;
+}
+
+/*$RCSfile: aula0506b.c,v $*/

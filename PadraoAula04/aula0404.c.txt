@@ -1,0 +1,111 @@
+ *Universidade Federal do Rio de Janeiro
+ *Escola Politecnica
+ *Departamento de Eletronica e de Computacao
+ *EEL270 - Computacao II - Turma 2020/1
+ *Prof. Marcelo Luiz Drumond Lanza
+ *Autor: Eduardo Bruno Martins Esperanca
+ *Descricao: Base para a funcao de calcular harmonico.
+ *
+ *$Author: eduardo.esperanca $
+ *$Date: 2021/01/11 22:58:28 $
+ *$Log: aula0404.c,v $
+ *Revision 1.2  2021/01/11 22:58:28  eduardo.esperanca
+ *correcao de mensagem de erro equivocada.
+ *
+ *Revision 1.1  2021/01/11 22:26:47  eduardo.esperanca
+ *Initial revision
+ *
+*/
+
+#include "aula04.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define LIMITE_DE_VARIAVEL 3
+#define finalizado       0
+#define VALOR_MAXIMO_EXCEDIDO             3
+#define ARGUMENTO_INVALIDO                4
+#define NUMERO_ARGUMENTOS                 2
+#define END_OF_STRING                    '\0'
+#define NUMERO_ARGUMENTOS_INVALIDO        1
+
+
+
+int
+main( int argc, char *argv[])
+{
+
+   float argumento;
+   long double anterior =1;
+   long double atual = 1;
+   unsigned long int index =0;
+   long double resultado = 0;
+   char *verificacao;
+   int broke = 0;
+   double target ;
+   char *verify = ".-0";
+   if (argc != NUMERO_ARGUMENTOS)
+   {
+      printf ("\nNao foi possivel calcular a Serie Harmonica Alternada :(.\n");
+      printf ("\nUso: %s <valor inapropriado>\n", argv [0]);
+      return NUMERO_ARGUMENTOS_INVALIDO;
+
+   }
+   if(argv[1][1] != verify[0])
+   {
+      printf("Porfavor, utilize apenas numeros positivos entre 0 e 1.\n");
+      return VALOR_MAXIMO_EXCEDIDO;
+   }
+   if(argv[1][0] != verify[2])
+   {
+      printf("Porfavor, utilize apenas numeros positivos entre 0 e 1.\n");
+      return VALOR_MAXIMO_EXCEDIDO;
+   }
+
+   if(argv[1][0] == verify[1])
+   {
+      printf("Porfavor, utilize apenas numeros positivos entre 0 e 1.\n");
+      return VALOR_MAXIMO_EXCEDIDO;
+   }
+
+   argumento = variavel (argv[1], &verificacao);
+
+   if (*verificacao != END_OF_STRING)
+   {
+     printf ("Argumento invalido. Caractere invalido: '%c'\n", *verificacao);
+      return ARGUMENTO_INVALIDO;
+   }
+
+
+
+   while(broke == 0 )
+   {
+
+      atual = CalcularSerieHarmonicaAlternada(index);
+      anterior = CalcularSerieHarmonicaAlternada(index-1);
+      target = (float)anterior*argumento;
+      resultado = atual - anterior;
+
+      printf("\n S(%lu) = %.10f \n",index ,CalcularSerieHarmonicaAlternada(index));
+
+      if(resultado < 0)
+      {
+         resultado = -resultado;
+      }
+      if(resultado == 0 && index > 1)
+      {
+         printf("Valor minimo alcancado, retorno forcado de :o .\n");
+         return LIMITE_DE_VARIAVEL;
+      }
+      if(resultado <= target && index != 0)
+      {
+         broke = 1;
+      }
+
+      index += 1;
+   }
+   return finalizado;
+}
+
+/*$RCSfile: aula0404.c,v $*/

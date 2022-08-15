@@ -1,0 +1,55 @@
+/*Universidade Federal do Rio de Janeiro
+/Escola Politecnica
+/Departamento de Eletronica e de Computacao
+/EEL270 - Computacao II - Turma 2020/1 - PLE-1
+/Prof. Marcelo Luiz Drumond Lanza
+/Autor: Eduardo Bruno Martins Esperanca
+/Descricao: Calcula sequencia fibonacci com do .
+/
+/$Author: eduardo.esperanca $
+/$Date: 2020/12/21 23:52:43 $
+/$Log: aula0201c.c,v $
+/Revision 1.2  2020/12/21 23:52:43  eduardo.esperanca
+/correcao de erro.
+/
+/Revision 1.1  2020/12/21 02:12:22  eduardo.esperanca
+/Initial revision
+/*/
+
+#include "aula0201.h"
+
+unsigned long long
+CalcularTermoSerieFibonacci(unsigned short index)
+{
+   unsigned short condicao;
+   unsigned long long resultado;
+   unsigned long long Valor_Antigo;
+   unsigned long long Valor_Novo;
+   Valor_Antigo = 1;
+   Valor_Novo = 1;
+   resultado = 0;
+
+
+   if(index == 0)
+   {
+      return resultado;
+   }
+   if(index == 1)
+   {
+      return Valor_Antigo;
+   }
+   for(condicao = 0; condicao < index ; condicao++)
+   {
+
+      Valor_Antigo = Valor_Novo;
+      Valor_Novo = resultado;
+      resultado = Valor_Novo + Valor_Antigo;
+
+   }
+
+   return resultado;
+}
+
+
+
+/*$RCSfile: aula0201c.c,v $*/

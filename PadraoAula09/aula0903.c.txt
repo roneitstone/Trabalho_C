@@ -1,0 +1,86 @@
+]
+/*Universidade Federal do Rio de Janeiro
+/*Universidade Federal do Rio de Janeiro
+*Escola Politecnica
+*Departamento de Eletronica e de Computacao
+*EEL270 - Computacao II - Turma 2020/1
+*Prof. Marcelo Luiz Drumond Lanza
+*Autor: Eduardo Bruno Martins Esperanca
+*Descricao: programa teste para funcao de converterArquivoFormatoUnixParaFormatoDos.
+*
+*$Author: eduardo.esperanca $
+*$Date: 2021/02/18 20:09:56 $
+*$Log: aula0903.c,v $
+*Revision 1.2  2021/02/18 20:09:56  eduardo.esperanca
+*correcao de erros e adicionado comentarios.
+*
+*Revision 1.1  2021/02/15 22:00:55  eduardo.esperanca
+*Initial revision
+*
+*/
+
+#include "aula09.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define NUMERO_DE_ARGUMENTOS_INVALIDO 12
+#define NUMERO_DE_ARGUMENTOS          2
+#define END_OF_STRING                 '\0'
+#define FINALIZADO                    0
+#define ARQUIVO_NULO                  7
+#define ERRO_AO_ABRIR                 1
+#define ARGUMENTO_2_FALTANDO          1
+
+int main (int argc, char *argv[])
+{
+   tipoErros verificador;
+   char *arquivo, *convertido;
+
+   if (argc < NUMERO_DE_ARGUMENTOS || argc > NUMERO_DE_ARGUMENTOS+1)
+   {
+      printf ("\n\n Numero de argumentos invalido! \n\n");
+      return NUMERO_DE_ARGUMENTOS_INVALIDO;
+   }
+   /*le os argumentos e os organiza*/
+   printf ("\n\n");
+   arquivo = argv[1];
+   if (argc-1 == ARGUMENTO_2_FALTANDO)
+   {
+      convertido = NULL;
+   }
+   else
+   {
+      convertido = argv[2];
+   }
+   /*chama funcao*/
+   verificador = ConverterArquivoFormatoUnixParaFormatoDos(arquivo, convertido);
+
+   /* categorizando e reportando erros*/
+   if (verificador == arquivoNulo)
+   {
+      printf ("\n\n Arquivo esta vazio ! \n\n");
+      return  ARQUIVO_NULO;
+   }
+   if (verificador == erroAbrirArquivo)
+   {
+      printf ("\n\n Nao foi possivel abrir o arquivo! :( \n\n");
+      return ERRO_AO_ABRIR;
+   }
+   if (verificador == erroAbrirArquivoBackup)
+   {
+      printf ("\n\n Nao foi possivel abrir o arquivo de Backup! :( \n\n");
+      return ERRO_AO_ABRIR;
+   }
+    if (verificador == erroAbrirArquivoConvertido)
+   {
+      printf ("\n\n Nao foi possivel abrir o arquivo convertido! :( \n\n");
+      return ERRO_AO_ABRIR;
+   }
+
+   printf (" \n\n ARQUIVO CONVERTIDO COM SUCESSO !\n\n");
+   return FINALIZADO;
+}
+
+
+/*$RCSfile: aula0903.c,v $*/

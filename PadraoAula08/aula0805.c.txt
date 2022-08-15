@@ -1,0 +1,105 @@
+/*Universidade Federal do Rio de Janeiro
+ *Escola Politecnica
+ *Departamento de Eletronica e de Computacao
+ *EEL270 - Computacao II - Turma 2020/1
+ *Prof. Marcelo Luiz Drumond Lanza
+ *Autor: Eduardo Bruno Martins Esperanca
+ *Descricao: programa de testes com a main para a funcao DECODIFICAR 32BITS.
+ *
+ *$Author: eduardo.esperanca $
+ *$Date: 2021/02/09 18:59:48 $
+ *$Log: aula0805.c,v $
+ *Revision 1.2  2021/02/09 18:59:48  eduardo.esperanca
+ *correcao do nome da .h e nas importacoes, adequado ao roteiro.
+ *
+ *Revision 1.1  2021/02/09 00:20:01  eduardo.esperanca
+ *Initial revision
+ *
+ */
+
+
+#include "aula08.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+
+#define NUMERO_DE_ARGUMENTOS_INVALIDO 6
+#define NUMERO_DE_ARGUMENTOS          4
+#define END_OF_STRING                 '\0'
+#define FINALIZADO                    0
+#define ARGUMENTO_INVALIDO            2
+#define DIMENSAO_EXCEDIDA             4
+#define VALOR_FORA_DOS_PADROES        7
+#define VALOR_MAXIMO_EXCEDIDO         1
+
+int
+main (int argc, char *argv[])
+{
+   tipoErros verificador;
+   unsigned long long numeroBytes[1];
+   char *codigo;
+   byte *codificado;
+   int index;
+   tipoAlfabetoBase32 tipo;
+   char *verif;
+   unsigned teste;
+
+   if ( argc != NUMERO_DE_ARGUMENTOS-1)
+   {
+      printf ("\n\n Entrada nula! \n\n");
+      return NUMERO_DE_ARGUMENTOS_INVALIDO;
+   }
+   if (strlen( argv[1]) != 1)
+   {
+      printf ("\n\n Apenas dois modos, 1- estendido e 0 - basico \n\n");
+      return VALOR_FORA_DOS_PADROES;
+   }
+
+   codificado = malloc (strlen(argv[2]));
+   codigo = malloc (strlen(argv[2]));
+
+   teste = strtoul (argv[1], &verif, 10);
+   if ( *verif != END_OF_STRING)
+   {
+      printf (" \n\n  Argumento Invalido < %c > \n\n", *verif);
+      return VALOR_FORA_DOS_PADROES;
+   }
+   if ( teste != 1 && teste != 0)
+   {
+      printf (" \n\n  Valor invalido! \n\n");
+      return VALOR_FORA_DOS_PADROES;
+   }
+   tipo = teste;
+   for ( index = 0 ; index < strlen(argv[2]); index++)
+   {
+      codigo[index] = argv[2][index];
+
+   }
+   verificador = DecodificarBase32( codigo,tipo,codificado, numeroBytes);
+   if ( verificador == entradaInvalida)
+   {
+      printf ("\n\n Entrada Invalida detectada !\n\n");
+      return VALOR_FORA_DOS_PADROES;
+   }
+   if ( verificador == argumentoInvalido )
+   {
+      printf ("\n\n Argumento invalido detectado !\n\n");
+      return VALOR_FORA_DOS_PADROES;
+   }
+   printf ("\n\n\n");
+   for ( index = 0; index < numeroBytes[0] ;index++)
+   {
+      printf (" %X ", codificado[index]);
+
+   }
+   printf ("\n\n\n");
+   return FINALIZADO;
+
+
+}
+
+
+
+/*$RCSfile: aula0805.c,v $ */

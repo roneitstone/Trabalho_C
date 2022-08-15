@@ -1,0 +1,53 @@
+/*
+ *Universidade Federal do Rio de Janeiro
+ *Escola Politecnica
+ *Departamento de Eletronica e de Computacao
+ *EEL270 - Computacao II - Turma 2020/1
+ *Prof. Marcelo Luiz Drumond Lanza
+ *Autor: Eduardo Bruno Martins Esperanca
+ *Descricao: funcao que calcula serie harmonica alternada por meio de recursao.
+ *
+ *$Author: eduardo.esperanca $
+ *$Date: 2021/01/11 22:22:54 $
+ *$Log: aula0403a.c,v $
+ *Revision 1.1  2021/01/11 22:22:54  eduardo.esperanca
+ *Initial revision
+ *
+ */
+
+#include "aula04.h"
+
+float
+CalcularSerieHarmonicaAlternada (unsigned long int base)
+{
+   float valoranterior;
+   float valorposterior;
+
+   if(base == -1)
+   {
+      return 0 ;
+   }
+
+   if(base == 0)
+   {
+      return base;
+   }
+   if(base == 1){
+      return base;
+   }
+
+   valoranterior = CalcularSerieHarmonicaAlternada(base-1);
+
+   valorposterior = (float)1/CalcularExponencial(base,base);
+
+   if(base % 2 == 0)
+   {
+      return valoranterior - valorposterior;
+   }
+   else
+   {
+      return valoranterior + valorposterior;
+   }
+}
+
+/*$RCSfile: aula0403a.c,v $*/

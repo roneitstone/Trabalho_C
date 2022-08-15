@@ -1,0 +1,85 @@
+/*Universidade Federal do Rio de Janeiro
+ *Escola Politecnica
+ *Departamento de Eletronica e de Computacao
+ *EEL270 - Computacao II - Turma 2020/1
+ *Prof. Marcelo Luiz Drumond Lanza
+ *Autor: Eduardo Bruno Martins Esperanca
+ *Descricao: programa de testes com a main para a funcao DECODIFICAR 16BITS.
+ *
+ *$Author: eduardo.esperanca $
+ *$Date: 2021/02/09 18:57:31 $
+ *$Log: aula0803.c,v $
+ *Revision 1.2  2021/02/09 18:57:31  eduardo.esperanca
+ *correcao do nome da .h e nas importacoes ,adequada ao roteiro.
+ *
+ *Revision 1.1  2021/02/09 00:18:42  eduardo.esperanca
+ *Initial revision
+ *
+ */
+
+
+#include "aula08.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+
+#define NUMERO_DE_ARGUMENTOS_INVALIDO 6
+#define NUMERO_DE_ARGUMENTOS          4
+#define END_OF_STRING                 '\0'
+#define FINALIZADO                    0
+#define ARGUMENTO_INVALIDO            2
+#define DIMENSAO_EXCEDIDA             4
+#define VALOR_FORA_DOS_PADROES        7
+#define VALOR_MAXIMO_EXCEDIDO         1
+
+int
+main (int argc, char *argv[])
+{
+   tipoErros verificador;
+   unsigned long long numeroBytes[2];
+   char *codigo;
+   byte *codificado;
+   int index;
+
+   if ( argc-1 == 0 )
+   {
+      printf ("\n\n Entrada nula! \n\n");
+      return NUMERO_DE_ARGUMENTOS_INVALIDO;
+   }
+
+   codigo = malloc (strlen(argv[1]));
+   codificado = malloc (strlen(argv[1]));
+   for ( index = 0 ; index < strlen(argv[1])+1; index++)
+   {
+      codigo[index] = argv[1][index];
+   }
+   codigo[index] = END_OF_STRING;
+   verificador = DecodificarBase16( codigo,codificado, numeroBytes);
+   if ( verificador == entradaInvalida)
+   {
+      printf ("\n\n Entrada Invalida detectada !\n\n");
+      return VALOR_FORA_DOS_PADROES;
+   }
+   if ( verificador == argumentoInvalido )
+   {
+      printf ("\n\n Argumento invalido detectado !\n\n");
+      return VALOR_FORA_DOS_PADROES;
+   }
+   printf ("\n\n\n");
+   for ( index = 0; index < numeroBytes[0] ;index++)
+   {
+      printf ("%X", codificado[index]);
+      printf ("  ");
+
+   }
+   printf ("\n\n\n");
+   return FINALIZADO;
+
+
+}
+
+
+
+/*$RCSfile: aula0803.c,v $ */

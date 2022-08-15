@@ -1,0 +1,32 @@
+/*universidade Federal do Rio de Janeiro
+/Escola Politecnica
+/Departamento de Eletronica e de Computacao
+/EEL270 - Computacao II - Turma 2020/1
+/Prof. Marcelo Luiz Drumond Lanza
+/Autor: Eduardo Bruno Martins Esperanca
+/Descricao: base das funcoes de calcular mdc.
+/
+/$Author: eduardo.esperanca $
+/$Date: 2021/01/04 00:51:26 $
+/$Log: aula0301.h,v $
+/Revision 1.1  2021/01/04 00:51:26  eduardo.esperanca
+/Initial revision
+/*/
+
+
+#ifndef _AULA0301_
+
+#define _AULA0301_   "@(#)aula0301.h $Revision: 1.1 $"
+
+
+typedef unsigned long long ull;
+
+ull
+CalcularMaximoDivisorComum(ull, ull);
+
+#endif
+
+
+
+
+/*$RCSfile: aula0301.h,v $*/

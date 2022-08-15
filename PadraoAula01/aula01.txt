@@ -1,0 +1,122 @@
+/*Universidade Federal do Rio de Janeiro
+/Escola Politecnica
+/Departamento de Eletronica e de Computacao
+/EEL270 - Computacao II - Turma 2020/1
+/Prof. Marcelo Luiz Drumond Lanza
+/Autor: Eduardo Bruno Martins Esperanca
+/Descricao: funçao printa tipos basicos, modificadores, modificadores juntos e modificadores e tipos basicos com  suas devidas junções
+/
+/$Author: eduardo.esperanca $
+/$Date: 2020/12/16 02:13:30 $
+/$Log: aula0105.c,v $
+/Revision 1.1  2020/12/16 02:13:30  eduardo.esperanca
+/Initial revision
+/*/
+#include <stdio.h>
+/* funcao pula linha, printa 80 hifens e pula linha*/
+void Pula_Linha(void)
+{
+
+   int index;
+   for(index = 0; index < 80; index++)
+   {
+      if(index == 0)
+      {
+         printf("\n\n");
+      }
+      printf("-");
+
+      if(index == 79)
+      {
+           printf("\n\n");
+      }
+   }
+}
+int
+main (int argc, char*argv[0])
+{
+   printf("\t\t\"Tipos Basicos:\"\n\n");
+   printf("Char\n\t\t\t\t %lu %s", sizeof(char), sizeof(char) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Void\n\t\t\t\t %lu %s", sizeof(void), sizeof(void) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Int\n\t\t\t\t %lu %s", sizeof(int), sizeof(int) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Float\n\t\t\t\t %lu %s", sizeof(float), sizeof(float) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Double\n\t\t\t\t %lu %s", sizeof(double), sizeof(double) == 1? " Byte\n" : " Bytes\n");
+
+   Pula_Linha();
+
+   printf("\t\t\"Modificadores de Sinal:\"\n\n");
+
+   printf("Signed\n\t\t\t\t %lu %s", sizeof(signed), sizeof(signed) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Unsigned\n\t\t\t\t %lu %s", sizeof(unsigned), sizeof(unsigned) == 1? " Byte\n" : " Bytes\n");
+
+   Pula_Linha();
+
+   printf("\t\t\"Modificadores de Largura:\"\n\n");
+
+   printf("Short\n\t\t\t\t %lu %s", sizeof(short), sizeof(short) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Long\n\t\t\t\t %lu %s", sizeof(long), sizeof(long) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Long Long\n\t\t\t\t %lu %s", sizeof(long long), sizeof(long long) == 1? " Byte\n" : " Bytes\n");
+
+   Pula_Linha();
+
+   printf("\t\t\"Modificadores de Sinal combinados com os Modificadores de Largura:\"\n\n");
+
+   printf("Signed Long\n\t\t\t\t %lu %s", sizeof(signed long), sizeof(signed long) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Unsigned Long\n\t\t\t\t %lu %s", sizeof(unsigned long), sizeof(unsigned long) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Signed Short\n\t\t\t\t %lu %s", sizeof(signed short), sizeof(signed short) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Unsigned Short\n\t\t\t\t %lu %s", sizeof(unsigned short), sizeof(unsigned short) == 1? " Byte\n" : " Bytes\n");
+
+   Pula_Linha();
+
+   printf("\t\t\"Tipos Basicos combinados com Modificadores de Sinal :\"\n\n");
+
+   printf("Signed Char\n\t\t\t\t %lu %s", sizeof(signed char), sizeof(signed char) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Signed Int\n\t\t\t\t %lu %s", sizeof(signed int), sizeof(signed int) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Unsigned Char\n\t\t\t\t %lu %s", sizeof(unsigned char), sizeof(unsigned char) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Unsigned Int\n\t\t\t\t %lu %s", sizeof(unsigned int), sizeof(unsigned int) == 1? " Byte\n" : " Bytes\n");
+
+   Pula_Linha();
+
+   printf("\t\t\"Tipos Basicos combinados com Modificadores de Largura :\"\n\n");
+
+   printf("Short Int\n\t\t\t\t %lu %s", sizeof(short int), sizeof(short int) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Long Int\n\t\t\t\t %lu %s", sizeof(long int), sizeof(long int) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Long Double\n\t\t\t\t %lu %s", sizeof(long double), sizeof(long double) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Long Long Int\n\t\t\t\t %lu %s", sizeof(long long int), sizeof(long long int) == 1? " Byte\n" : " Bytes\n");
+
+   Pula_Linha();
+
+   printf("\t\t\"Tipos Basicos combinados com Modificadores de Sinal e com Modificadores de Largura :\"\n\n");
+
+   printf("Signed Long Int\n\t\t\t\t %lu %s", sizeof(signed long int), sizeof(signed long int) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Signed Short Int\n\t\t\t\t %lu %s", sizeof(signed short int), sizeof(signed short int) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Signed Long Long Int\n\t\t\t\t %lu %s", sizeof(signed long long int), sizeof(signed long long int) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Unsigned Long Int\n\t\t\t\t %lu %s", sizeof(unsigned long int), sizeof(unsigned long int) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Unsigned Short Int\n\t\t\t\t %lu %s", sizeof(unsigned short int), sizeof(unsigned short int) == 1? " Byte\n" : " Bytes\n");
+
+   printf("Unsigned Long Long Int\n\t\t\t\t %lu %s", sizeof(unsigned long long int), sizeof(unsigned long long int) == 1? " Byte\n" : " Bytes\n");
+
+
+   return 0;
+}
+/*$RCSfile: aula0105.c,v $*/

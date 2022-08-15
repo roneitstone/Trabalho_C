@@ -1,0 +1,151 @@
+/*Universidade Federal do Rio de Janeiro
+ *Escola Politecnica
+ *Departamento de Eletronica e de Computacao
+ *EEL270 - Computacao II - Turma 2020/1
+ *Prof. Marcelo Luiz Drumond Lanza
+ *Autor: Eduardo Bruno Martins Esperanca
+ *Descricao: programa de testes com a main para a funcao CODIFICAR 64BITS.
+ *
+ *$Author: eduardo.esperanca $
+ *$Date: 2021/02/09 19:00:30 $
+ *$Log: aula0806.c,v $
+ *Revision 1.2  2021/02/09 19:00:30  eduardo.esperanca
+ *correcao do nome da .h e nas importacoes, adequado ao roteiro.
+ *
+ *Revision 1.1  2021/02/09 00:19:31  eduardo.esperanca
+ *Initial revision
+ *
+ */
+
+
+#include "aula08.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+
+#define NUMERO_DE_ARGUMENTOS_INVALIDO 6
+#define NUMERO_DE_ARGUMENTOS          4
+#define END_OF_STRING                 '\0'
+#define FINALIZADO                    0
+#define ARGUMENTO_INVALIDO            2
+#define DIMENSAO_EXCEDIDA             4
+#define VALOR_FORA_DOS_PADROES        7
+#define VALOR_MAXIMO_EXCEDIDO         1
+
+int
+main (int argc, char *argv[])
+{
+   tipoErros verificador;
+   unsigned long long numeroBytes;
+   unsigned long long max = 0;
+   byte *codigo;
+   char *codificado;
+   tipoFinalLinha tipo;
+   int index;
+   int index2 = 3 ;
+   char *verif;
+   unsigned teste;
+   unsigned long long teste1;
+   long double teste2;
+   if (argc <= NUMERO_DE_ARGUMENTOS-1 )
+   {
+      printf (" \n\n Entrada nula! \n\n");
+      return VALOR_FORA_DOS_PADROES;
+   }
+   codificado = malloc ( (argc-3 ) *4);
+   codigo = malloc ( (argc-3) + 1);
+
+
+   if (strlen( argv[1]) != 1)
+   {
+      printf ("\n\n Apenas dois modos, 1- estendido e 0 - basico \n\n");
+      return VALOR_FORA_DOS_PADROES;
+   }
+   teste = strtoul ( argv[1], &verif , 10);
+   if ( *verif != END_OF_STRING)
+   {
+      printf (" \n\n Valor incorreto de tipo ! < %c > \n\n ", *verif);
+      return VALOR_FORA_DOS_PADROES;
+   }
+   if( teste != 1 && teste != 0)
+   {
+      printf ("\n\n Apenas dois modos, 1- habilitado e 0 - desabilitado \n\n");
+      return VALOR_FORA_DOS_PADROES;
+   }
+
+   tipo = teste;
+   teste1 = conversor ( argv[2], &verif , 10);
+   if ( *verif != END_OF_STRING)
+   {
+      printf (" \n\n Valor incorreto de tipo ! < %c > \n\n ", *verif);
+      return VALOR_FORA_DOS_PADROES;
+   }
+   teste2 = strtod ( argv[2], &verif);
+   if ( *verif != END_OF_STRING)
+   {
+      printf (" \n\n Valor incorreto de tipo ! < %c > \n\n ", *verif);
+      return VALOR_FORA_DOS_PADROES;
+   }
+
+   if ( teste2 > max - 1 || teste2 == INFINITO || teste2 == NEGINFINITO)
+   {
+      printf (" \n\n Valor maximo excedido !  \n\n ");
+      return VALOR_MAXIMO_EXCEDIDO;
+   }
+
+   numeroBytes = teste1;
+   if (numeroBytes != argc-3)
+   {
+      printf (" \n\n Numero de bytes nao bate com argumentos! < %d> \n\n", argc-3);
+      return VALOR_FORA_DOS_PADROES;
+   }
+
+   for ( index = 0 ; index < (argc-3) ; index++)
+   {
+      if ( argv[index][0] == '-')
+      {
+         printf ("\n\n Valor invalido em 16 bits < - >\n\n");
+         return VALOR_FORA_DOS_PADROES;
+      }
+
+
+      codigo[index] = strtoul (argv[index2], &verif, 16);
+
+      if ( *verif != END_OF_STRING)
+      {
+         printf ("\n\n Argumento Invalido < %c >!\n\n", *verif);
+         return VALOR_FORA_DOS_PADROES;
+      }
+      if ( strlen ( argv[index2] )!= 2)
+      {
+         printf ("\n\n Utilize apenas 2 argumentos por cli.\n\n");
+         return VALOR_FORA_DOS_PADROES;
+      }
+      index2++;
+   }
+   codigo [index] = END_OF_STRING;
+
+   verificador = CodificarBase64( codigo, numeroBytes, tipo, codificado);
+   if ( verificador == entradaInvalida)
+   {
+      printf ("\n\n Entrada Invalida detectada !\n\n");
+      return VALOR_FORA_DOS_PADROES;
+   }
+   if ( verificador == numeroBytesIncorreto )
+   {
+      printf ("\n\n Numero de bytes nao bate com argumentos !\n\n");
+      return VALOR_FORA_DOS_PADROES;
+   }
+
+   printf ("\n\n %s \n\n", codificado);
+
+   return FINALIZADO;
+
+
+}
+
+
+
+/*$RCSfile: aula0806.c,v $ */

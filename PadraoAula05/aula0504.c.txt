@@ -1,0 +1,154 @@
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        1,5-9         Top
+[www02][                                                                                                                                                                                                                                                          (0*$ bash)                                                                                                                                                                                                                                                          ][03/09/21 11:46 AM]
+        /* Universidade Federal do Rio de Janeiro
+ * Escola Politecnica
+ * Departamento de Eletronica e de Computacao
+ * EEL270 - Computacao II - Turma 2020/1
+ * Prof. Marcelo Luiz Drumond Lanza
+ * Autor: Eduardo Bruno Martins Esperanca
+ * Descricao: base da funcao de gerar digitos verificadores de cpf, validar cpf e gerar cpf com variavel do tipo char;
+ *
+ * $Author: eduardo.esperanca $
+ * $Date: 2021/01/18 19:39:20 $
+ * $Log: aula0504.c,v $
+ * Revision 1.2  2021/01/18 19:39:20  eduardo.esperanca
+ * correcao de cabecalho.
+ *
+ * Revision 1.1  2021/01/17 22:10:28  eduardo.esperanca
+ * Initial revision
+ *
+ */
+
+#include "aula0504.h"
+#define END_OF_STRING      '\0'
+#define POINT              '.'
+
+
+tipoErros
+GerarDigitosVerificadoresCpf(char* arg, char* dv1, char* dv2)
+{
+   int index;
+   int digito = 0;
+   int resultado = 0;
+   int auxiliar = 10;
+   int verificador;
+   for(index = 0;index != 9;)
+   {
+      digito = arg[index ] - '0';
+      resultado = resultado + (digito * (auxiliar - index));
+      index++;
+   }
+   if(resultado%11 == 0 || resultado%11 == 1)
+   {
+      verificador = 0;
+   }
+   else
+   {
+      verificador = 11 - resultado%11;
+   }
+   arg[index] = verificador + '0';
+   dv1[0] = verificador + '0';
+   dv1[1] = END_OF_STRING;
+   auxiliar = 11;
+   resultado = 0;
+
+   for (index = 0; index !=10;)
+   {
+      digito = arg[index ] - '0';
+
+      resultado = resultado + (digito * (auxiliar - index));
+
+      index++;
+   }
+   if(resultado%11 == 0 || resultado%11 == 1)
+   {
+      verificador = 0;
+   }
+   else
+   {
+      verificador = 11 - resultado%11;
+   }
+
+   arg[index] = verificador + '0';
+   dv2[0] = verificador + '0';
+   dv2[1] = END_OF_STRING;
+   arg[index-1] = END_OF_STRING;
+   return ok;
+
+}
+
+
+tipoErros
+ValidarCpf(char* arg)
+{
+   int index;
+   int verif;
+   int adiantador = 0;
+   char cpfaux[16];
+   char dv1[2];
+   char dv2[2];
+
+
+   for(index = 0; arg[index] != END_OF_STRING ; index ++)
+   {
+      verif  = arg[index];
+      if(verif < 48 || verif >57)
+      {
+         if(index != 3 && index != 7 && index != 11)
+         {
+            return argumentoInvalido;
+         }
+         if(index == 3 && index == 7)
+         {
+            if(arg[index] != POINT)
+            {
+               return argumentoInvalido;
+            }
+         }
+         if(index == 11)
+         {
+            if(arg[index] != '-')
+            {
+               return argumentoInvalido;
+            }
+         }
+      }
+
+   }
+   adiantador = 0;
+   for(index = 0; arg[index] != '-'; index++)
+   {
+
+      if(arg[index] == POINT)
+      {
+         adiantador++;
+      }
+      else
+      {
+         cpfaux[index-adiantador] = arg[index];
+      }
+
+   }
+
+   cpfaux[index-2] = END_OF_STRING;
+   GerarDigitosVerificadoresCpf(cpfaux,dv1 ,dv2);
+
+   index = 12;
+
+   while(arg[index] != END_OF_STRING)
+   {
+      if(arg[index] != dv1[0] && index == 12 )
+      {
+         return verificadorInvalido;
+      }
+      if(arg[index] != dv2[0] && index == 13)
+      {
+         return verificadorInvalido;
+      }
+      index++;
+   }
+
+   return ok;
+}
+
+/*$RCSfile: aula0504.c,v $*/

@@ -1,0 +1,152 @@
+
+
+/*
+ *Universidade Federal do Rio de Janeiro
+ *Escola Politecnica
+ *Departamento de Eletronica e de Computacao
+ *EEL270 - Computacao II - Turma 2020/1
+ *Prof. Marcelo Luiz Drumond Lanza
+ *Autor: Eduardo Bruno Martins Esperanca
+ *Descricao: Calcula a transposta de uma matriz.
+ *
+ *$Author: eduardo.esperanca $
+ *$Date: 2021/01/25 03:23:40 $
+ *$Log: aula0603.c,v $
+ *Revision 1.1  2021/01/25 03:23:40  eduardo.esperanca
+ *Initial revision
+ *
+ */
+
+
+
+
+#include <stdio.h>
+#include "aula0601.h"
+#include <stdlib.h>
+#include <string.h>
+
+#define NUMERO_DE_ARGUMENTOS_INVALIDO 3
+#define END_OF_STRING                 '\0'
+#define FINALIZADO                    0
+#define ARGUMENTO_INVALIDO            2
+#define DIMENSAO_EXCEDIDA             4
+#define VALOR_FORA_DOS_PADROES        7
+#define VALOR_MAXIMO_EXCEDIDO         1
+#define COLUNA_LINHA_INCOMPATIVEL     5
+
+int
+protetor (double arg)
+{
+   if( arg == INFINITO || arg == NEGINFINITO)
+   {
+      return VALOR_MAXIMO_EXCEDIDO;
+   }
+
+   return 0;
+}
+
+int
+main (int argc, char *argv[])
+{
+   double teste ;
+   unsigned short linhaA;
+   unsigned short colunaA;
+   double matriza [COLMAX][LINMAX], resultado [COLMAX][LINMAX];
+   int indexl, indexc;
+   int seletor = 3;
+   char *verif;
+   tipoErros verificador;
+
+   if( strlen(argv[1]) > 3 || strlen(argv[2]) > 3 )
+   {
+      printf (" \n\n Valor maximo excedido ! \n\n");
+      return VALOR_MAXIMO_EXCEDIDO;
+   }
+
+   linhaA = strtol(argv[1], &verif, 10);
+
+   if( *verif != END_OF_STRING )
+   {
+      printf (" \n\n Argumento invalido < %s > \n\n ", verif);
+      return ARGUMENTO_INVALIDO;
+   }
+
+   colunaA = strtol(argv[2], &verif, 10);
+
+   if( *verif != END_OF_STRING )
+   {
+      printf (" \n\n Argumento invalido < %s > \n\n ", verif);
+      return ARGUMENTO_INVALIDO;
+   }
+
+
+   if(linhaA > LINMAX || colunaA > COLMAX )
+   {
+      printf (" \n\n Excedeu o limite permitido de dimensao . \n\n ");
+      return DIMENSAO_EXCEDIDA;
+   }
+
+   if(linhaA < 0 || colunaA < 0 )
+   {
+      printf (" \n\n O numero precisa ser maior do que zero .\n\n");
+      return VALOR_FORA_DOS_PADROES;
+   }
+
+
+
+   indexl = linhaA * colunaA;
+
+   if(indexl != argc - 3)
+   {
+      printf ("\n\n Numero de argumentos invalido, dimensoes incorretas! \n\n");
+      return NUMERO_DE_ARGUMENTOS_INVALIDO;
+   }
+
+
+
+   for (indexl = 0 ; indexl < linhaA ; indexl++)
+   {
+      for ( indexc = 0 ; indexc < colunaA ; indexc++)
+      {
+         teste = strtod ( argv[seletor], &verif);
+         if( *verif != END_OF_STRING )
+         {
+            printf (" \n\n Argumento invalido < %s > \n\n ", verif);
+            return ARGUMENTO_INVALIDO;
+         }
+
+         if(protetor(teste) != 0)
+         {
+            printf ("\n\n Valor de double excedido !  \n\n");
+            return VALOR_MAXIMO_EXCEDIDO;
+         }
+
+         matriza[indexl][indexc] = teste;
+         seletor++;
+      }
+   }
+
+
+   verificador = ObterMatrizTransposta(linhaA, colunaA, matriza, resultado);
+
+   if (verificador == overF )
+   {
+      printf (" \n\n Limite de variavel excedido \n\n");
+      return VALOR_MAXIMO_EXCEDIDO;
+   }
+   if (verificador == ok)
+   {
+      for (indexl = 0 ; indexl < linhaA ; indexl++)
+      {
+         for ( indexc = 0 ; indexc < colunaA ; indexc++)
+         {
+            printf (" %f ", resultado [indexl][indexc]);
+         }
+         printf ("\n");
+      }
+   }
+
+   return FINALIZADO;
+}
+/*$RCSfile: aula0603.c,v $*/
+~

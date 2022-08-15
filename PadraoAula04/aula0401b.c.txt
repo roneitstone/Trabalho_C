@@ -1,0 +1,67 @@
+/*
+ *Universidade Federal do Rio de Janeiro
+*Escola Politecnica
+*Departamento de Eletronica e de Computacao
+*EEL270 - Computacao II - Turma 2020/1
+*Prof. Marcelo Luiz Drumond Lanza
+*Autor: Eduardo Bruno Martins Esperanca
+*Descricao: funcao que calcula exponecial de uma base por meio de do while.
+*
+*$Author: eduardo.esperanca $
+*$Date: 2021/01/11 22:21:46 $
+*$Log: aula0401b.c,v $
+*Revision 1.1  2021/01/11 22:21:46  eduardo.esperanca
+*Initial revision
+*
+*Revision 1.1  2021/01/11 22:14:18  eduardo.esperanca
+*Initial revision
+*
+*/
+
+#include "aula04.h"
+
+long double
+CalcularExponencial (double base, int expoente)
+{
+   long double resultado = 1;
+   if(expoente < 0 && base == 0){
+      return INFINITO;
+   }
+
+   if(expoente == 0)
+   {
+      return 1;
+   }
+   if(expoente > 0)
+   {
+      do{
+
+
+         resultado *= base;
+
+         if(resultado == INFINITO || resultado == NEGINFINITO)
+         {
+            return NEGINFINITO;
+         }
+         expoente-=1;
+
+      }
+      while(expoente != 0);
+   }
+   else
+   {
+      do{
+         resultado /= base;
+         if(resultado == INFINITO || resultado == NEGINFINITO)
+         {
+            return NEGINFINITO;
+         }
+         expoente += 1;
+      }
+      while(expoente != 0);
+
+   }
+   return resultado;
+}
+
+/*$RCSfile: aula0401b.c,v $*/

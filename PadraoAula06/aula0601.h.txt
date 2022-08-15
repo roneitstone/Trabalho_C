@@ -1,0 +1,69 @@
+/*
+ *Universidade Federal do Rio de Janeiro
+ *Escola Politecnica
+ *Departamento de Eletronica e de Computacao
+ *EEL270 - Computacao II - Turma 2020/1
+ *Prof. Marcelo Luiz Drumond Lanza
+ *Autor: Eduardo Bruno Martins Esperanca
+ *Descricao: Prototipo da funcao de multiplicar matrizes, trasnpor, calcular menor complementar e complemento algebrico.
+ *
+ *$Author: eduardo.esperanca $
+ *$Date: 2021/01/25 03:19:40 $
+ *$Log: aula0601.h,v $
+ *Revision 1.1  2021/01/25 03:19:40  eduardo.esperanca
+ *Initial revision
+ *
+ */
+#ifndef  _AULA0601_
+
+#define  _AULA0601_       "@(#)aula0601.h $Revision: 1.1 $"
+#define  COLMAX 100
+#define  LINMAX  100
+#define INFINITO 1.0/0.0
+#define NEGINFINITO -1.0/0.0
+
+typedef enum{
+   ok,
+   overF,
+   incalculavel
+} tipoErros;
+
+tipoErros
+MultiplicarMatrizes (unsigned short,
+                              unsigned short,
+                              unsigned short,
+                              unsigned short, /* numero de colunas da matriz 2 (E) */
+                             double [LINMAX][COLMAX], /* matriz 1 (E) */
+                             double [LINMAX][COLMAX], /* matriz 2 (E) */
+                             double [LINMAX][COLMAX]); /* matriz produto (S) */
+
+tipoErros
+ObterMatrizTransposta (unsigned short, /* numero de linhas da matriz original (E) */
+                                    unsigned short, /* numero de colunas da matriz original (E) */
+                                    double [LINMAX][COLMAX], /* matriz original (E) */
+                                    double [LINMAX][COLMAX]); /* matriz transposta (S) */
+
+
+tipoErros
+CalcularMenorComplementar (unsigned short, /* ordem da matriz (E) */
+                                            unsigned short, /* linha do elemento (E) */
+                                            unsigned short, /* coluna do elemento (E) */
+                                           double [LINMAX][COLMAX], /* matriz (E) */
+                                           double *); /* menor complementar (S) */
+
+tipoErros
+CalcularComplementoAlgebrico (unsigned short, /* ordem da matriz (E) */
+                                                unsigned short, /* linha do elemento (E) */
+                                                unsigned short, /* coluna do elemento (E) */
+                                                double [LINMAX][COLMAX], /* matriz (E) */
+                                                double *); /* complemento algebrico ou cofator (S) */
+
+tipoErros
+CalcularDeterminanteMatriz (unsigned short, /* ordem da matriz (E) */
+                                           double [LINMAX][COLMAX], /* matriz (E) */
+                                           double *); /* determinante (S) */
+
+
+#endif
+
+/*$RCSfile: aula0601.h,v $*/

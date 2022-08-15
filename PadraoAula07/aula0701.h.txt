@@ -1,0 +1,66 @@
+ *Universidade Federal do Rio de Janeiro
+ *Escola Politecnica
+ *Departamento de Eletronica e de Computacao
+ *EEL270 - Computacao II - Turma 2020/1
+ *Prof. Marcelo Luiz Drumond Lanza
+ *Autor: Eduardo Bruno Martins Esperanca
+ *Descricao: Prototipo da funcao de mostrar monitor.
+ *
+ *$Author: eduardo.esperanca $
+ *$Date: 2021/02/02 17:23:08 $
+ *$Log: aula0701.h,v $
+ *Revision 1.1  2021/02/02 17:23:08  eduardo.esperanca
+ *Initial revision
+ *
+ */
+
+#ifndef  _AULA0701_
+
+#define  _AULA0701_       "@(#)aula0701.h $Revision: 1.1 $"
+
+#define  MAX_VERTICES                50
+#define  NUMERO_MAXIMO_LINHAS       250
+#define  NUMERO_MAXIMO_COLUNAS      800
+#define ACESO                       'X'
+#define APAGADO                     'O'
+#define DEFEITUOSO                  '-'
+
+typedef unsigned int useconds_t;
+
+typedef enum {
+   apagado,
+   aceso,
+   defeituoso
+} tipoPixel;
+
+typedef enum {
+   ok,
+   linhaInvalida,
+   dimensaoInvalida,
+   argumentoInvalido,
+   tempoInvalido,
+   pontoInvalido,
+   verticeIncorreto,
+   pixelDefeituoso
+} tipoErros;
+
+tipoErros
+MostrarMonitor (tipoPixel monitor [NUMERO_MAXIMO_LINHAS ] [NUMERO_MAXIMO_COLUNAS ], unsigned numeroMaximoLinhas, unsigned numeroMaximoColunas, useconds_t tempoEspera);
+
+tipoErros
+LimparMonitor (tipoPixel monitor [NUMERO_MAXIMO_LINHAS ][ NUMERO_MAXIMO_COLUNAS], unsigned numeroMaximoLinhas, unsigned numeroMaximoColunas);
+
+tipoErros
+DesenharReta (tipoPixel monitor [NUMERO_MAXIMO_LINHAS ][ NUMERO_MAXIMO_COLUNAS], unsigned numeroMaximoLinhas, unsigned numeroMaximoColunas, unsigned linhaA, unsigned colunaA, unsigned linhaB, unsigned colunaB);
+
+tipoErros
+DesenharPoligono (tipoPixel monitor [NUMERO_MAXIMO_LINHAS ][ NUMERO_MAXIMO_COLUNAS], unsigned numeroMaximoLinhas, unsigned numeroMaximoColunas, unsigned numeroVertices, unsigned linhasVertices [NUMERO_MAXIMO_LINHAS], unsigned colunasVertices [NUMERO_MAXIMO_COLUNAS], useconds_t tempoEspera);
+
+
+tipoErros
+PreencherPoligono (tipoPixel monitor [NUMERO_MAXIMO_LINHAS ][ NUMERO_MAXIMO_COLUNAS], unsigned numeroMaximoLinhas, unsigned numeroMaximoColunas, unsigned linha, unsigned coluna, useconds_t tempoEspera);
+
+
+#endif
+
+/*$RCSfile: aula0701.h,v $*/

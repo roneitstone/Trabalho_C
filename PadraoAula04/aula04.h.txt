@@ -1,0 +1,40 @@
+/*universidade Federal do Rio de Janeiro
+Escola Politecnica
+Departamento de Eletronica e de Computacao
+EEL270 - Computacao II - Turma 2020/1
+Prof. Marcelo Luiz Drumond Lanza
+Autor: Eduardo Bruno Martins Esperanca
+Descricao: base apara a funcao de calcular exponencial.
+
+$Author: eduardo.esperanca $
+$Date: 2021/01/11 22:17:57 $
+$Log: aula04.h,v $
+Revision 1.1  2021/01/11 22:17:57  eduardo.esperanca
+Initial revision
+
+*/
+
+
+#ifndef _AULA04_
+#define _AULA04_           "@(#)aula04.h $Revision: 1.1 $"
+
+#define INFINITO 1.0/0.0
+#define NEGINFINITO -1.0/0.0
+
+#define variavel strtof
+#ifndef ANSI
+#undef variavel
+#define variavel strtod
+#endif
+
+
+
+long double
+CalcularExponencial(double, int);
+
+float
+CalcularSerieHarmonicaAlternada (unsigned long int);
+
+#endif
+
+/*$RCSfile: aula04.h,v $*/

@@ -1,0 +1,111 @@
+/* Universidade Federal do Rio de Janeiro
+ * Escola Politecnica
+ * Departamento de Eletronica e de Computacao
+ * EEL270 - Computacao II - Turma 2020/1
+ * Prof. Marcelo Luiz Drumond Lanza
+ * Autor: Eduardo Bruno Martins Esperanca
+ * Descricao: recebe os 9 primeiros digitos do cpf e printa os verificadores;
+ *
+ * $Author: eduardo.esperanca $
+ * $Date: 2021/01/18 19:56:57 $
+ * $Log: aula0502b.c,v $
+ * Revision 1.2  2021/01/18 19:56:57  eduardo.esperanca
+ * correcao de cabecalho.
+ *
+ * Revision 1.1  2021/01/17 22:12:45  eduardo.esperanca
+ * Initial revision
+ *
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "aula0501.h"
+
+#define FINALIZADO                    0
+#define NUMERO_DE_ARGUMENTOS          2
+#define NUMERO_DE_ARGUMENTOS_INVALIDO 2
+#define ARGUMENTO_INVALIDO            1
+#define END_OF_STRING                 '\0'
+
+
+int
+protect (char arg[])
+{
+   int count;
+   for(count = 0; arg[count] != END_OF_STRING;)
+   {
+      if(count > 8 )
+      {
+         return ARGUMENTO_INVALIDO;
+      }
+      count++;
+   }
+   if(count != 9)
+   {
+      return ARGUMENTO_INVALIDO;
+   }
+
+   return FINALIZADO;
+}
+
+int
+main (int argc, char *argv[])
+{
+   char dvs[2];
+   tipoErros validador;
+   byte cpf[12];
+   int index;
+   char *verificacao;
+
+   if(argc != NUMERO_DE_ARGUMENTOS)
+   {
+      printf ("\n\n Numero de argumentos fora do padrão, por favor digite apenas 1 com os 9 digitos. :( \n\n");
+     return NUMERO_DE_ARGUMENTOS_INVALIDO;
+   }
+
+   if(protect(argv[1]) != FINALIZADO)
+   {
+      printf ("\n\n Nao coloque mais do que 9 digitos. :( \n\n");
+      return ARGUMENTO_INVALIDO;
+   }
+
+   for (index = 0; argv[1][index] != END_OF_STRING ; index++)
+   {
+      dvs[0] = argv[1][index];
+      dvs[1] = END_OF_STRING;
+      cpf[index] = strtol(dvs, &verificacao, 10);
+      if( *verificacao != END_OF_STRING)
+      {
+         printf ("\n\n Argumento invalido < %s > .\n\n", verificacao);
+         return ARGUMENTO_INVALIDO;
+      }
+   }
+
+   cpf[index] = END_OF_STRING;
+
+   validador = GerarDigitosVerificadoresCpf(cpf);
+
+
+
+
+   if(validador == argumentoInvalido)
+   {
+      printf (" \n\n Argumento Invalido . \n\n");
+      return ARGUMENTO_INVALIDO;
+   }
+   if(validador == ok)
+   {
+      printf ("\n\n Digitos Verificadores = %d%d \n\n", cpf[9], cpf[10]);
+   }
+   return FINALIZADO;
+}
+
+
+
+
+
+
+
+
+
+/*$RCSfile: aula0502b.c,v $*/

@@ -1,0 +1,114 @@
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        1,1           All
+[www02][                                                                                                                                                                                                                                                          (0*$ bash)                                                                                                                                                                                                                                                          ][03/09/21 11:45 AM]
+/* Universidade Federal do Rio de Janeiro
+ * Escola Politecnica
+ * Departamento de Eletronica e de Computacao
+ * EEL270 - Computacao II - Turma 2020/1
+ * Prof. Marcelo Luiz Drumond Lanza
+ * Autor: Eduardo Bruno Martins Esperanca
+ * Descricao: recebe os 11 digito com um traço separando os verificadores em um cli e valida o cpf;
+ *
+ * $Author: eduardo.esperanca $
+ * $Date: 2021/01/18 20:04:00 $
+ * $Log: aula0503b.c,v $
+ * Revision 1.2  2021/01/18 20:04:00  eduardo.esperanca
+ * correcao de cabecalho.
+ *
+ * Revision 1.1  2021/01/17 22:13:58  eduardo.esperanca
+ * Initial revision
+ *
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "aula0501.h"
+
+#define FINALIZADO                    0
+#define NUMERO_DE_ARGUMENTOS          2
+#define NUMERO_DE_ARGUMENTOS_INVALIDO 2
+#define ARGUMENTO_INVALIDO            1
+#define END_OF_STRING                 '\0'
+#define CPF_INVALIDO                  3
+
+
+int
+protect (char arg[])
+{
+   int count;
+   for(count = 0; arg[count] != END_OF_STRING;)
+   {
+      if(count > 11 )
+      {
+         return ARGUMENTO_INVALIDO;
+      }
+      count++;
+   }
+   if(count != 12)
+   {
+      return ARGUMENTO_INVALIDO;
+   }
+   return FINALIZADO;
+}
+
+int
+main (int argc, char *argv[])
+{
+   tipoErros validador;
+   char digito[1];
+   byte cpf[13];
+   int adiantador = 0;
+   int index;
+   char *verificacao;
+
+   if(argc != NUMERO_DE_ARGUMENTOS)
+   {
+     printf ("\n\n Numero de argumentos fora do padrão, por favor digite apenas um  CLI com os 11 digitos e - antes dos verificadores. :( \n\n");
+     return NUMERO_DE_ARGUMENTOS_INVALIDO;
+   }
+
+   if(protect(argv[1]) != FINALIZADO)
+   {
+      printf ("\n\n Coloque apenas 11 digitos com os 2 ultimos separados por '-'. :( \n\n");
+      return ARGUMENTO_INVALIDO;
+   }
+
+   for ( index = 0 ; argv[1][index] != END_OF_STRING ; index++)
+   {
+      if(index == 9 )
+      {
+         adiantador++;
+         if( argv[1][index] != '-')
+         {
+            printf ("\n\n Argumento Invalido < %c > \n\n", argv[1][index]);
+            return ARGUMENTO_INVALIDO;
+         }
+      }
+      else
+      {
+         digito[0] = argv[1][index];
+         cpf[index-adiantador] = strtol (digito,&verificacao, 10);
+         if(*verificacao != END_OF_STRING)
+         {
+            printf ("\n\n Argumento Invalido < %s > \n\n", verificacao);
+            return ARGUMENTO_INVALIDO;
+         }
+      }
+   }
+
+   validador = ValidarCpf(cpf);
+
+
+   if(validador == verificadorInvalido)
+   {
+      printf ("\n\n Cpf Invalido :(, verificador nao condizente.\n\n");
+      return CPF_INVALIDO;
+
+   }
+   if(validador == ok)
+   {
+      printf ("\n\n !!Parabens seu cpf eh valido :O !! \n\n");
+   }
+   return FINALIZADO;
+}
+
+/*$RCSfile: aula0503b.c,v $*/

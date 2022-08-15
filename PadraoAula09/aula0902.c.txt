@@ -1,0 +1,64 @@
+/*Universidade Federal do Rio de Janeiro
+*Escola Politecnica
+*Departamento de Eletronica e de Computacao
+*EEL270 - Computacao II - Turma 2020/1
+*Prof. Marcelo Luiz Drumond Lanza
+*Autor: Eduardo Bruno Martins Esperanca
+*Descricao: programa teste para funcao de exibir arquivo.
+*
+*$Author: eduardo.esperanca $
+*$Date: 2021/02/18 20:12:57 $
+*$Log: aula0902.c,v $
+*Revision 1.2  2021/02/18 20:12:57  eduardo.esperanca
+*adicionado comentarios.
+*
+*Revision 1.1  2021/02/15 21:55:25  eduardo.esperanca
+*Initial revision
+*
+*/
+
+#include "aula09.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+
+#define NUMERO_DE_ARGUMENTOS_INVALIDO 12
+#define NUMERO_DE_ARGUMENTOS          2
+#define END_OF_STRING                 '\0'
+#define FINALIZADO                    0
+#define ARQUIVO_NULO                  7
+#define ERRO_AO_ABRIR                 1
+
+int main (int argc, char *argv[])
+{
+   tipoErros verificador;
+   char *arquivo;
+
+   if (argc != NUMERO_DE_ARGUMENTOS)
+   {
+      printf ("\n\n Numero de argumentos invalido! \n\n");
+      return NUMERO_DE_ARGUMENTOS_INVALIDO;
+   }
+   /* organizando argumentos */
+   arquivo = argv[1];
+
+   /* chama funcao */
+   verificador = ExibirConteudoArquivo (arquivo);
+
+   /* verificando possiveis erros */
+   if (verificador == arquivoNulo)
+   {
+      printf ("\n\n Arquivo nao encontrado ! \n\n");
+      return  ARQUIVO_NULO;
+   }
+   if (verificador == erroAbrirArquivo)
+   {
+      printf ("\n\n Nao foi possivel abrir o arquivo! :( \n\n");
+      return ERRO_AO_ABRIR;
+   }
+
+   return FINALIZADO;
+}
+
+
+/*$RCSfile: aula0902.c,v $*/
